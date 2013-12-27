@@ -1,3 +1,4 @@
 *.geany
+*.bat
 export/
 export.sh
