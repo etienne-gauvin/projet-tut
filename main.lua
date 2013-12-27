@@ -22,7 +22,7 @@ function love.load()
   game.layer = Layer:new('main')
   game.layer:addSubLayer('itemlayer')
   
-  for i = 1, 10 do 
+  for i = 1, 10 do
     game.layer:addEntity(Item:new(150 + i * 12, 150), 'itemlayer')
   end
 end

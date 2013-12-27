@@ -1,3 +1,5 @@
+
+
 -- Fonctions de chargement de chaque ressource
 local loaders = {
   
@@ -36,32 +38,21 @@ local loaders = {
 
 -- Charger toutes les ressources demandées dans un tableau
 local function loadResources(resourceList)
+  
   local resources = {}
   
-  -- Lecture du fichier de ressources
-  local restypes = resourceList or require('resources')
+  -- Liste des types de ressources
+  local resTypes = love.filesystem.enumerate('resources')
   
-  -- Ouverture de toutes les ressources
-  for restypei, resdirs in ipairs(restypes) do
-    local restypename = resdirs.restypename
-    resources[restypename] = {}
+  -- Pour chaque type de ressource
+  for i, resType in ipairs(resTypes) do
+    local resFiles = love.filesystem.enumerate('resources/' .. resType)
     
-    print('-- Loading ' .. restypename)
-    
-    for resname, res in pairs(resdirs) do
-      if resname ~= 'restypename' then
-        if restypename == 'objects' then
-          resources[restypename][resname] = loadResources(res)
-          
-        elseif resname ~= 'restypename' then
-          resources[restypename][resname] = loaders[restypename](resources, type(res) == 'table' and unpack{res.path, res} or res)
-          
-          if not resources[restypename][resname] then
-            print("[error]", 'Resource ' .. restypename .. '.' .. resname .. ' not loaded')
-          else
-            print("[res]", 'Resource ' .. restypename .. '.' .. resname .. ' loaded')
-          end
-        end
+    for j, resFile in resFiles do
+      resources[resType][resFile] = loaders[resType]('resources/' .. resType .. '/' .. resFile)
+      
+      if not resources[resType][resFile] then
+        print("Erreur lors du chargement de la ressource " .. resType .. '/' .. resFile)
       end
     end
   end
