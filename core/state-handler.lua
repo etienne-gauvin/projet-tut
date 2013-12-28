@@ -3,8 +3,18 @@ local StateHandler = Object:subclass('StateHandler')
 
 -- Constructeur
 function StateHandler:initialize()
-  self.states = {}
   self.current = false
+end
+
+-- Changer de state
+function StateHandler:switchTo(state, ...)
+  
+  if self.current then
+    self.current:stop()
+  end
+  
+  self.current = state
+  self.current:start(...)
 end
 
 return StateHandler

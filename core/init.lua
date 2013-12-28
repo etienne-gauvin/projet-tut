@@ -12,6 +12,9 @@ core.atl = require 'core/libs/atl'
 -- Gestionnaire d'animations
 core.anim8 = require 'core/libs/anim8'
 
+-- Gestionnaire des états du jeu (states)
+core.stateHandler = require 'core/state-handler'
+
 -- Charger le jeu
 core.load = require 'core/load'
 
@@ -19,7 +22,7 @@ core.load = require 'core/load'
 core.config = (require 'core/config'):new()
 
 -- Classe caméra
-core.camera = require 'core/camera'
+core.Camera = require 'core/camera'
 
 -- Calques d'affichage
 core.layers = (require 'core/layer'):new('main')

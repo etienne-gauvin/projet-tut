@@ -16,6 +16,10 @@ return function()
   lg.setFont(resources.imagefonts.normal)
   
   -- Caméra
-  game.camera = core.camera(0, 0)
+  game.camera = core.Camera(0, 0)
   
+  -- States
+  game.states = require 'scripts/states'
+  
+  core.stateHandler:switchTo(game.states.start)
 end
