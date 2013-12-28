@@ -1,5 +1,5 @@
 -- Joue le rôle d'un calque pouvant contenir des entités ou d'autres calques.
-local Layer = Object:subclass('EntityListHandler')
+local Layer = Object:subclass('Layer')
 
 -- Incrémentation à chaque nouveau calque
 local layercounter = 1
@@ -50,76 +50,36 @@ function Layer:getSubLayer(name)
   end
 end
 
+-- Alias de Layer:getSubLayer
+function Layer:sub(name)
+  return self:getSubLayer(name)
+end
+
 -- Ajouter une entité au calque ou à un sous-calque.
 -- entity : l'entité en question
--- [layername='base'] : le calque
--- [...] = sous-calques
-function Layer:addEntity(entity, layername, ...)
-  if not layername or layername == 'base' then
-    self.entities[entity.id] = entity
-  else
-    local sublayer = self:getSubLayer(layername)
-    
-    if sublayer then
-      sublayer:addEntity(entity, ...)
-    else
-      print("[err] Impossible d'associer l'entité " .. entity.id .. " au calque " .. layername .. ", celui-ci n'existe pas.")
-    end
-  end
+function Layer:addEntity(entity)
+  self.entities[entity.id] = entity
 end
 
 -- Retirer une entité du calque ou d'un sous-calque
 -- Attention, seule la référence est supprimée.
 -- entityid : l'id de l'entité
--- [layername='base'] : le calque
--- [...] = sous-calques
-function Layer:removeEntity(entityid, layername, ...)
-  if not layername or layername == 'base' then
-    self.entities[entityid] = nil
-  else
-    local sublayer = self:getSubLayer(layername)
-    
-    if sublayer then
-      sublayer:removeEntity(entityid, ...)
-    end
-  end
+function Layer:removeEntity(entityid)
+  self.entities[entityid] = nil
 end
 
 -- Ajouter un sous-calque dans le calque actuel ou un sous-calque
 -- Les calques sont affichés dans l'ordre de leur création
 -- newlayername
--- [layername='base'] : le calque dans lequel ajouter le nouveau calque
--- [...] = sous-calques
-function Layer:addSubLayer(newlayername, newlayerid, layername, ...)
-  if not layername or layername == 'base' then
-    self.layers[#self.layers + 1] = Layer:new(newlayername)
-  else
-    local sublayer = self:getSubLayer(layername)
-    
-    if sublayer then
-      sublayer:addSubLayer(newlayername, ...)
-    else
-      print("[err] Impossible de créer le calque " .. newlayername .. " dans le calque " .. layername .. ", celui-ci n'existe pas.")
-    end
-  end
+function Layer:addSubLayer(layer)
+  self.layers[#self.layers + 1] = layer
 end
 
 -- Retirer un sous-calque du calque ou d'un sous-calque
 -- layerToRemoveName : nom du calque à supprimer
--- [layerid='base'] : le calque
--- [..] = sous-calques
-function Layer:removeSubLayer(layerToRemoveName, layername, ...)
-  if not layername or layername == 'base' then
-    local sublayer, sublayerid = self:getSubLayer(layerToRemoveName)
-    
-    self.layers[sublayerid] = nil
-  else
-    local sublayer = self:getSubLayer(layername)
-    
-    if sublayer then
-      sublayer:removeEntity(entityid, ...)
-    end
-  end
+function Layer:removeSubLayer(layer)
+ local sublayer, sublayerid = self:getSubLayer(layer.name)
+  self.layers[sublayerid] = nil
 end
 
 return Layer
