@@ -1,19 +1,36 @@
 -- Chargement des maps
 
 -- Dossier des maps
-local path = 'resources/maps/'
+local mapsPath = core.atl.Loader.path
+local path = '.'
 
--- Tableau des ressources
-local maps = {}
+-- Fonction récursive de chargement
+local function load(path)
 
--- Liste des dossiers
-local files = love.filesystem.getDirectoryItems(path)
-
--- Charger image du dossier
-for f, fileName in ipairs(files) do
-  if love.filesystem.isFile(path .. fileName) and fileName ~= 'init.lua' then
-    maps[string.match(fileName, '^[^.]+')] = lg.newImage(path .. fileName)
+  -- Tableau
+  local res = {}
+  
+  -- Liste des dossiers
+  local files = love.filesystem.getDirectoryItems(mapsPath .. '/' .. path)
+  print(mapsPath .. '/' .. path, #files)  
+  
+  -- Charger tout le dossier
+  for f, fileName in ipairs(files) do
+    local filePath = string.gsub(mapsPath .. '/' .. path .. '/' .. fileName, '%./', '')
+    local fileRelativePath = string.gsub(path .. '/' .. fileName, '%./', '')
+    local name = string.match(fileName, '^[^.]+')
+    
+    -- Fichier
+    if love.filesystem.isFile(filePath) and fileName ~= 'init.lua' then
+      res[tonumber(name) or name] = core.atl.Loader.load('/' .. fileRelativePath)
+    
+    -- Dossier
+    elseif love.filesystem.isDirectory(filePath) then
+      res[tonumber(fileName) or fileName] = load(fileRelativePath)
+    end
   end
+  
+  return res
 end
 
-return maps
+return load(path)

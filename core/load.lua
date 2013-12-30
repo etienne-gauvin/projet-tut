@@ -21,5 +21,9 @@ return function()
   -- States
   game.states = require 'scripts/states'
   
-  core.stateHandler:switchTo(game.states.start)
+  -- Niveaux
+  game.levels = require 'scripts/levels'
+  
+  -- Démarrage du jeu
+  core.stateHandler.current = game.states.start
 end

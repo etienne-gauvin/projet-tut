@@ -1,6 +1,5 @@
 -- Affichage principal
 return function()
 
-  -- Affichage des calques
-  core.layers:draw()
+  core.stateHandler.current:draw()
 end

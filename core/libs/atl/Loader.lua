@@ -43,8 +43,8 @@ local fullpath  -- The full path to the tmx file minus the name
 ----------------------------------------------------------------------------------------------------
 -- Processes directory up paths
 local function directoryUp(path)
-    while string.find(path, "[^/^\\]+[/\\]%.%.[/\\]") do
-        path = string.gsub(path, "[^/^\\]+[/\\]%.%.[/\\]", "/", 1)
+    while string.find(path, "[^/]+/%.%./") do
+        path = string.gsub(path, "[^/]+/%.%./", "", 1)
     end
     return path
 end
@@ -285,6 +285,9 @@ function Loader._expandTileSet(t, map)
         if v.label == "image" then 
             imagePath = v.xarg.source
             path = directoryUp(tilesetDir .. v.xarg.source)
+            
+            print('Loader', path, imagePath)
+            
             -- If the image is in the cache then load it
             if cache[path] then
                 image = cache[path]

@@ -18,4 +18,8 @@ end
 function State:update(dt)
 end
 
+-- Affichage
+function State:draw()
+end
+
 return State

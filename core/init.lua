@@ -8,6 +8,7 @@ local core = {}
 
 -- Gestionnaire de maps
 core.atl = require 'core/libs/atl'
+core.atl.Loader.path = 'resources/maps'
 
 -- Gestionnaire d'animations
 core.anim8 = require 'core/libs/anim8'
@@ -32,5 +33,10 @@ core.update = require 'core/update'
 
 -- Fonction d'affichage
 core.draw = require 'core/draw'
+
+-- Déboguage
+core.debug = {
+  drawHitboxes = true
+}
 
 return core

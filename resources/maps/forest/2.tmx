@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="24" height="16" tilewidth="48" tileheight="48">
+ <tileset firstgid="1" name="forest" tilewidth="48" tileheight="48">
+  <image source="../../tilesets/forest.png" width="384" height="384"/>
+ </tileset>
+ <layer name="base" width="24" height="16">
+  <data encoding="base64" compression="zlib">
+   eJy1k9sKgCAMQCcmPVQUVBRkT9X//2IbTRCR0nAPBy+Ts+FUAYASwDASbo00SCuUh9wDMnGOrqC7QkZ2O2ah2iX8W+Am9oL+8G5K+6l+i9TIKeA/2HvxurQ/xPk1Q+/LePPYXkrcjeTv4fkHEvh9tpHe+ywf8RzWzPNvtaW6cnPmnv/DDRIfDZk=
+  </data>
+ </layer>
+ <objectgroup name="controls" width="24" height="16" visible="0">
+  <object name="map-end" type="map-end" x="1056" y="384" width="96" height="144"/>
+  <object name="map-start" type="map-start" x="144" y="480" width="48" height="48"/>
+ </objectgroup>
+ <objectgroup name="staticHitboxes" width="24" height="16" visible="0">
+  <object type="map-hitbox" x="0" y="528" width="1152" height="240"/>
+  <object type="map-hitbox" x="0" y="144" width="96" height="384"/>
+  <object type="map-hitbox" x="1056" y="48" width="96" height="336"/>
+  <object type="map-hitbox" x="1008" y="96" width="96" height="336"/>
+  <object type="map-hitbox" x="960" y="192" width="48" height="240"/>
+ </objectgroup>
+</map>
