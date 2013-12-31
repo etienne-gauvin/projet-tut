@@ -20,10 +20,10 @@ Guide de démarrage
 ------------------
 
 Pour essayer la version de développement de ce jeu, il est nécessaire 
-d'installer le moteur de jeu LÖVE 2D disponible sur (ici)[http://love2d.org/]
+d'installer le moteur de jeu LÖVE 2D disponible sur [ici](http://love2d.org/).
 
 Télécharger ensuite le contenu du dépôt au format zip 
-(ici)[https://github.com/etienne-gauvin/projet-tut/archive/master.zip] et 
+[ici](https://github.com/etienne-gauvin/projet-tut/archive/master.zip) et 
 changez simplement son extension _.zip_ en _.love_.
 
 Le jeu peut maintenant être démarré en ouvrant ce fichier avec LÖVE 2D 
@@ -34,8 +34,10 @@ La version finale ne nécessitera pas d'installer le moteur de jeu et pourra
 donc fonctionner en standalone.
 
 
-À faire (_liste non-exhaustive_) :
-------------
+À faire :
+---------
+
+(_cette liste n'est pas exhaustive_)
 
 + Créer les personnages et leurs animations
 
