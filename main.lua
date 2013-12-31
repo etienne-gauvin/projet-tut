@@ -3,8 +3,9 @@ require 'core/libs/middleclass'
 
 -- Raccourcis accessibles sur toutes les pages
 Vector = require 'core/libs/vector'
-lg = love.graphics
-lk = love.keyboard
+graphics = love.graphics
+keyboard = love.keyboard
+mouse = love.mouse
 
 -- Coeur du jeu
 core = require 'core'
@@ -31,7 +32,5 @@ end
 
 -- Gestion des évènements clavier
 function love.keypressed(key)
-  if key == 'escape' then
-    love.event.quit()
-  end
+  core.keypressed(key)
 end

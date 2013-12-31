@@ -1,22 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" width="24" height="16" tilewidth="48" tileheight="48">
+<map version="1.0" orientation="orthogonal" width="48" height="32" tilewidth="48" tileheight="48">
  <tileset firstgid="1" name="forest" tilewidth="48" tileheight="48">
   <image source="../../tilesets/forest.png" width="384" height="384"/>
+  <terraintypes>
+   <terrain name="grassyGround" tile="11"/>
+   <terrain name="earthGround" tile="51"/>
+  </terraintypes>
+  <tile id="6" terrain="0,0,0,"/>
+  <tile id="7" terrain="0,0,,0"/>
+  <tile id="10" terrain=",,,0"/>
+  <tile id="11" terrain=",,0,0"/>
+  <tile id="12" terrain=",,0,"/>
+  <tile id="14" terrain="0,,0,0"/>
+  <tile id="15" terrain=",0,0,0"/>
+  <tile id="18" terrain=",0,,0"/>
+  <tile id="19" terrain="0,0,0,0"/>
+  <tile id="20" terrain="0,,0,"/>
+  <tile id="22" terrain="0,0,0,0"/>
+  <tile id="23" terrain="0,0,0,0"/>
+  <tile id="26" terrain=",0,,0"/>
+  <tile id="27" terrain="0,0,0,0"/>
+  <tile id="28" terrain="0,,0,"/>
+  <tile id="34" terrain=",0,,"/>
+  <tile id="35" terrain="0,0,,"/>
+  <tile id="36" terrain="0,,,"/>
+  <tile id="50" terrain=",,,1"/>
+  <tile id="51" terrain=",,1,1"/>
+  <tile id="52" terrain=",,1,"/>
  </tileset>
- <layer name="base" width="24" height="16">
+ <layer name="ground" width="48" height="32">
   <data encoding="base64" compression="zlib">
-   eJy1k9sKgCAMQCcmPVQUVBRkT9X//2IbTRCR0nAPBy+Ts+FUAYASwDASbo00SCuUh9wDMnGOrqC7QkZ2O2ah2iX8W+Am9oL+8G5K+6l+i9TIKeA/2HvxurQ/xPk1Q+/LePPYXkrcjeTv4fkHEvh9tpHe+ywf8RzWzPNvtaW6cnPmnv/DDRIfDZk=
+   eJztV11LAzEQDFyLQi0VVBLw+tT6pD6p//+vuYFbOq6b3ObOmD5kYLijzcdsdrLJOdfR0dHRUQsDcQPctpVTjB3xDrhvK6cYD8RH4kgMxGNbOcU4Ec/AF2O/D+Kn4FcNgTN4I77D89XYj/PGjPk7uDYxLIHM2y3RE59aigJgPcLnJtGe47H6rxa2E2Vdwvp0LTWW13OYiLrv3U9/R8b6FD2+h/Ytoa2x1B3c7zgO7jpyEWsI6/MurVcj5gLzyPukNuIcz6A7xzHzH+fiv85w9LnmcUmvxDgm3rldzTMc9ydr47uDxTdSq/Z7PANq7IuhUOMS8jmM+2IN8NzZubI9WrIXpI+wRq3RjjUy5/eSmHL7mfVzm6NbnoM5zZbak4orKOPIuNBLgyB+M3FNkeR51uiUeixjSWo11sK5PLNurZ2mMxcjeiYXozYXr7Gf3uU81jULifdSyjNDzu+V8XM+seZ9Lm4tJuu4qTPG4pGa1PJtYaluOUeuP2tKrW3JHe8vY7lxl289zX+W8QM8MUasA5q/Nc8FMUeAvvEO8g3d8TQn
   </data>
  </layer>
- <objectgroup name="controls" width="24" height="16" visible="0">
-  <object name="map-end" type="map-end" x="1056" y="384" width="96" height="144"/>
-  <object name="map-start" type="map-start" x="144" y="480" width="48" height="48"/>
+ <objectgroup name="controls" width="24" height="16">
+  <object name="map-end" type="map-end" x="2208" y="816" width="96" height="384"/>
+  <object name="map-start" type="map-start" x="96" y="1056" width="48" height="48"/>
  </objectgroup>
- <objectgroup name="staticHitboxes" width="24" height="16" visible="0">
-  <object type="map-hitbox" x="0" y="528" width="1152" height="240"/>
-  <object type="map-hitbox" x="0" y="144" width="96" height="384"/>
-  <object type="map-hitbox" x="1056" y="48" width="96" height="336"/>
-  <object type="map-hitbox" x="1008" y="96" width="96" height="336"/>
-  <object type="map-hitbox" x="960" y="192" width="48" height="240"/>
- </objectgroup>
+ <objectgroup name="staticHitboxes" width="24" height="16"/>
 </map>

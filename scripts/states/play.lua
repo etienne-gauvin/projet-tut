@@ -50,6 +50,15 @@ end
 -- Mise à jour
 function PlayState:update(dt)
   self.level:update(dt)
+  
+  if core.debug.freeCamera then
+    local focus = Vector(
+      self.level.map.width * self.level.map.tileWidth * mouse.getX() / screen.w(),
+      self.level.map.height * self.level.map.tileHeight * mouse.getY() / screen.h())
+    
+    game.camera:lookAt(focus.x, focus.y)
+    self.level.map:setDrawRange(focus.x - screen.w() / 2, focus.y - screen.h() / 2, screen.w(), screen.h())
+  end
 end
 
 -- Affichage

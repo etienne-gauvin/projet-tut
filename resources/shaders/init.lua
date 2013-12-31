@@ -12,7 +12,7 @@ local files = love.filesystem.getDirectoryItems(path)
 -- Charger image du dossier
 for f, fileName in ipairs(files) do
   if love.filesystem.isFile(path .. fileName) and fileName ~= 'init.lua' then
-    shaders[string.match(fileName, '^[^.]+')] = lg.newShader(path .. fileName)
+    shaders[string.match(fileName, '^[^.]+')] = graphics.newShader(path .. fileName)
   end
 end
 

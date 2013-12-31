@@ -286,8 +286,6 @@ function Loader._expandTileSet(t, map)
             imagePath = v.xarg.source
             path = directoryUp(tilesetDir .. v.xarg.source)
             
-            print('Loader', path, imagePath)
-            
             -- If the image is in the cache then load it
             if cache[path] then
                 image = cache[path]
@@ -315,7 +313,9 @@ function Loader._expandTileSet(t, map)
         end
         
         -- Process tile properties
-        if v.label == "tile" then 
+        if v.label == "tile" then
+            tileProperties[v.xarg.id+t.xarg.firstgid] = {}
+            
             for _, v2 in ipairs(v) do
                 if v2.label == "properties" then
                     -- Store the property. We must increase the id the starting gid
@@ -323,6 +323,8 @@ function Loader._expandTileSet(t, map)
                     tileProperties[v.xarg.id+t.xarg.firstgid] = Loader._expandProperties(v2)
                 end
             end
+            
+            tileProperties[v.xarg.id+t.xarg.firstgid].solid = v.xarg.terrain or false
         end
         
         -- Process tile set properties

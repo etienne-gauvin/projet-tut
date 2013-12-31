@@ -9,8 +9,8 @@ local chars = [=[
 
 return {
   -- Font normale
-  normal = lg.newImageFont(lg.newImage(path .. 'pixel-font.png'), chars),
+  normal = graphics.newImageFont(graphics.newImage(path .. 'pixel-font.png'), chars),
   
   -- Font avec ombre
-  shadowed = lg.newImageFont(lg.newImage(path .. 'pixel-font-shadowed.png'), chars)
+  shadowed = graphics.newImageFont(graphics.newImage(path .. 'pixel-font-shadowed.png'), chars)
 }

@@ -6,14 +6,14 @@ return function()
   
   -- Paramétrage de la fenêtre
   screen = {}
-  screen.w = lg.getWidth -- Taille réelle de l'écran
-  screen.h = lg.getHeight
+  screen.w = graphics.getWidth -- Taille réelle de l'écran
+  screen.h = graphics.getHeight
   
   -- Resources
   resources = require 'resources'
   
   -- Police par défaut
-  lg.setFont(resources.imagefonts.normal)
+  graphics.setFont(resources.imagefonts.normal)
   
   -- Caméra
   game.camera = core.Camera(0, 0)

@@ -15,7 +15,7 @@ local function load(path)
   -- Charger image du dossier
   for f, fileName in ipairs(files) do
     if love.filesystem.isFile(path .. fileName) and fileName ~= 'init.lua' then
-      res[string.match(fileName, '^[^.]+')] = lg.newImage(path .. fileName)
+      res[string.match(fileName, '^[^.]+')] = graphics.newImage(path .. fileName)
     elseif love.filesystem.isDirectory(path .. fileName) then
       res[fileName] = load(path .. '/' .. fileName)
     end

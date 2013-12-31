@@ -34,9 +34,14 @@ core.update = require 'core/update'
 -- Fonction d'affichage
 core.draw = require 'core/draw'
 
+-- Fonction d'appui sur un bouton
+core.keypressed = require 'core/keypressed'
+
 -- Déboguage
 core.debug = {
-  drawHitboxes = true
+  drawHitboxes = false,
+  freeCamera = true,
+  drawMapInfos = true
 }
 
 return core

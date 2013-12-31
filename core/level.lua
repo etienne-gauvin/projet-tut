@@ -6,7 +6,7 @@ local graphics = love.graphics
 local Level = Object:subclass('Level')
 
 -- Initialisation
-function Level:initialize(name, map)
+function Level:initialize(name, map, cameraFocus)
   self.name = name
   self.map = map
   
@@ -17,19 +17,24 @@ function Level:initialize(name, map)
   -- Tableau des boîtes de collision statiques
   self.staticHitboxes = {}
   
-  for i, obj in pairs(self.map.layers.staticHitboxes.objects) do
+  for x, y, tile in self.map.layers.ground:rectangle(0, 0, self.map.width - 1, self.map.height - 1) do
     
-    local hitBox = {}
-    hitBox.body = physics.newBody(self.world, obj.x + obj.width / 2, obj.y + obj.height / 2)
-    hitBox.shape = physics.newRectangleShape(obj.width, obj.height)
-    hitBox.fixture = physics.newFixture(hitBox.body, hitBox.shape)
+    print(x, y)
     
-    table.insert(self.staticHitboxes, hitBox)
+    if tile.properties.solid then
+      local hitBox = {}
+      hitBox.body = physics.newBody(self.world, x * tile.width + tile.width / 2, y * tile.height + tile.height / 2)
+      hitBox.shape = physics.newRectangleShape(tile.width, tile.height)
+      hitBox.fixture = physics.newFixture(hitBox.body, hitBox.shape)
+      
+      table.insert(self.staticHitboxes, hitBox)
+    end
   end
 end
 
 -- Démarrage
 function Level:levelStart()
+  
 end
 
 -- Lorsque le joueur entre dans la zone de fin de niveau
@@ -45,23 +50,61 @@ end
 
 -- Mise à jour
 function Level:update(dt)
+  
+  local map = self.map
+  
+  -- Mise à jour du moteur physique
   self.world:update(dt)
+  
+  
+  -- Mise à jour de la position de la caméra
+  local focus = self.cameraFocus and Vector(self.cameraFocus.pos.x, self.cameraFocus.pos.y) or Vector(0, 0)
+  
+  if focus.x < screen.w() / 2 then
+    focus.x = screen.w() / 2
+  elseif focus.x > map.width * map.tileWidth - screen.w() / 2 then
+    focus.x = map.width * map.tileWidth - screen.w() / 2
+  end
+  
+  if focus.y < screen.h() / 2 then
+    focus.y = screen.h() / 2
+  elseif focus.y > map.height * map.tileHeight - screen.h() / 2 then
+    focus.y = map.height * map.tileHeight - screen.h() / 2
+  end
+  
+  -- Centrer la caméra
+  game.camera:lookAt(focus.x, focus.y)
+  
+  -- Mettre à jour la zone affichée de la map
+  map:autoDrawRange(focus.x, focus.y, 1)
 end
 
 -- Affichage
 function Level:draw()
   
+  -- Fond
+  graphics.setColor(128, 196, 255)
+  graphics.rectangle('fill', 0, 0, screen.w(), screen.h())
+  
+  -- Caméra
+  game.camera:attach()
+  
+  -- Affichage de la map
   self.map:draw()
   
   if core.debug.drawHitboxes then
     
     -- Affichage des hitboxes
     for i, hitBox in ipairs(self.staticHitboxes) do
-      print(hitBox.shape:getPoints())
-      graphics.setColor(128, 96, 192, 48)
+      graphics.setColor(96, 196, 0, 96)
       graphics.polygon("fill", hitBox.body:getWorldPoints(hitBox.shape:getPoints()))
+      graphics.setColor(96, 196, 0, 192)
+      graphics.polygon("line", hitBox.body:getWorldPoints(hitBox.shape:getPoints()))
     end
   end
+  
+  -- Caméra
+  game.camera:detach()
 end
 
 return Level

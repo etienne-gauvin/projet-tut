@@ -22,7 +22,8 @@ local function load(path)
     
     -- Fichier
     if love.filesystem.isFile(filePath) and fileName ~= 'init.lua' then
-      res[tonumber(name) or name] = core.atl.Loader.load('/' .. fileRelativePath)
+      local map = core.atl.Loader.load('/' .. fileRelativePath)
+      res[tonumber(name) or name] = map
     
     -- Dossier
     elseif love.filesystem.isDirectory(filePath) then

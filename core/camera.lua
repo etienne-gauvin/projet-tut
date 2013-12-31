@@ -92,7 +92,7 @@ end
 
 function camera:cameraCoords(x,y)
   -- x,y = ((x,y) - (self.x, self.y)):rotated(self.rot) * self.scale + center
-  local w,h = screen.sw(), screen.sh()
+  local w,h = screen.w(), screen.h()
   local c,s = cos(self.rot), sin(self.rot)
   x,y = x - self.x, y - self.y
   x,y = c*x - s*y, s*x + c*y
@@ -101,7 +101,7 @@ end
 
 function camera:worldCoords(x,y)
   -- x,y = (((x,y) - center) / self.scale):rotated(-self.rot) + (self.x,self.y)
-  local w,h = screen.sw(), screen.sh()
+  local w,h = screen.w(), screen.h()
   local c,s = cos(-self.rot), sin(-self.rot)
   x,y = (x - w/2) / self.scale, (y - h/2) / self.scale
   x,y = c*x - s*y, s*x + c*y
@@ -109,9 +109,7 @@ function camera:worldCoords(x,y)
 end
 
 function camera:mousepos()
-  local mx, my = love.mouse.getPosition()
-  
-  return self:worldCoords(mx / screen.scale(), my / screen.scale())
+  return self:worldCoords(love.mouse.getPosition())
 end
 
 -- the module
