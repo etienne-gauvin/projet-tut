@@ -8,7 +8,7 @@ local core = {}
 
 -- Gestionnaire de maps
 core.atl = require 'core/libs/atl'
-core.atl.Loader.path = 'resources/maps'
+core.atl.Loader.path = ''
 
 -- Gestionnaire d'animations
 core.anim8 = require 'core/libs/anim8'
@@ -36,6 +36,9 @@ core.draw = require 'core/draw'
 
 -- Fonction d'appui sur un bouton
 core.keypressed = require 'core/keypressed'
+
+-- Fonctions de manipulation des répertoires
+core.path = require 'core/path'
 
 -- Déboguage
 core.debug = {
