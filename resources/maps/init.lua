@@ -1,5 +1,12 @@
 -- Chargement des maps
 
+return {
+  forest = {
+    [1] = core.atl.Loader.load('/forest/1.tmx')
+  }
+}
+
+--[[
 -- Dossier des maps
 local mapsPath = core.atl.Loader.path
 local path = '.'
@@ -34,4 +41,4 @@ local function load(path)
   return res
 end
 
-return load(path)
+return load(path)]]
