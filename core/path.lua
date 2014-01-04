@@ -32,7 +32,7 @@ end
 -- Supprime l'éventuelle extension
 function path.removeExt(p)
   p = path.beautifier(p)
-  return string.match(p, '([^/^.]+)%.[^/^.]+$') or p
+  return string.match(p, '(.*[^/^.]+)%.[^/^.]+$') or p
 end
 
 -- Retourne le chemin du parent du dossier pointé
@@ -51,6 +51,17 @@ function path.join(...)
   return p
 end
 
+-- Retourne le nom de fichier sous la forme camel case (et sans extension)
+function path.camelcase(p)
+  p = path.removeExt(path.filename(p))
+  
+  for c in string.gmatch(p, "[-.][a-z0-9]") do
+    p = string.gsub(p, c, string.sub(string.upper(c), 2))
+  end
+  
+  return string.gsub(p, '[-.]', '')
+end
+
 -- Fonction récursive de chargement d'un dossier
 function path.load(directory, capture, callback)
 
@@ -66,7 +77,6 @@ function path.load(directory, capture, callback)
     local itemPath = path.join(directory, itemName)
     
     -- Nom sans extension
-    print(itemName, path.removeExt(itemName))
     local name = path.removeExt(itemName)
     
     -- Fichier
@@ -75,11 +85,12 @@ function path.load(directory, capture, callback)
       and not string.match(itemName, '^init%.lua')
     then
     
-      itemArray[tonumber(name) or name] = callback(itemPath)
+      itemArray[tonumber(name) or path.camelcase(name)] = callback(itemPath)
+      print(tonumber(name) or path.camelcase(name))
     
     -- Dossier
     elseif love.filesystem.isDirectory(itemPath) then
-      itemArray[tonumber(itemName) or itemName] = path.load(itemPath, capture, callback)
+      itemArray[tonumber(itemName) or path.camelcase(itemName)] = path.load(itemPath, capture, callback)
     end
   end
   

@@ -8,7 +8,6 @@ local core = {}
 
 -- Gestionnaire de maps
 core.atl = require 'core/libs/atl'
-core.atl.Loader.path = ''
 
 -- Gestionnaire d'animations
 core.anim8 = require 'core/libs/anim8'

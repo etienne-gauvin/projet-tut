@@ -13,7 +13,7 @@ return function()
   resources = require 'resources'
   
   -- Police par défaut
-  graphics.setFont(resources.imagefonts.normal)
+  graphics.setFont(resources.imagefonts.pixelNormal)
   
   -- Caméra
   game.camera = core.Camera(0, 0)

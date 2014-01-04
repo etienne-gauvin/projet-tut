@@ -19,8 +19,6 @@ function Level:initialize(name, map, cameraFocus)
   
   for x, y, tile in self.map.layers.ground:rectangle(0, 0, self.map.width - 1, self.map.height - 1) do
     
-    print(x, y)
-    
     if tile.properties.solid then
       local hitBox = {}
       hitBox.body = physics.newBody(self.world, x * tile.width + tile.width / 2, y * tile.height + tile.height / 2)
@@ -30,22 +28,6 @@ function Level:initialize(name, map, cameraFocus)
       table.insert(self.staticHitboxes, hitBox)
     end
   end
-end
-
--- Démarrage
-function Level:levelStart()
-  
-end
-
--- Lorsque le joueur entre dans la zone de fin de niveau
-function Level:levelEnd()
-  
-  -- Avertir la PlayState de la fin du niveau
-  core.states.play:levelEnd()
-end
-
--- Arrêt
-function Level:stop()
 end
 
 -- Mise à jour
@@ -83,7 +65,7 @@ end
 function Level:draw()
   
   -- Fond
-  graphics.setColor(128, 196, 255)
+  graphics.setColor(155, 194, 140)
   graphics.rectangle('fill', 0, 0, screen.w(), screen.h())
   
   -- Caméra
@@ -105,6 +87,21 @@ function Level:draw()
   
   -- Caméra
   game.camera:detach()
+end
+
+-- Arrêt
+function Level:stop()
+end
+
+-- Démarrage
+function Level:levelStart()
+end
+
+-- Lorsque le joueur entre dans la zone de fin de niveau
+function Level:levelEnd()
+  
+  -- Avertir la PlayState de la fin du niveau
+  core.states.play:levelEnd()
 end
 
 return Level
