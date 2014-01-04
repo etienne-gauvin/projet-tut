@@ -32,6 +32,15 @@ La version finale ne nécessitera pas d'installer le moteur de jeu et pourra
 donc fonctionner en standalone.
 
 
+Il y a quelques fonctionnalités accessibles par le clavier, et utiles pour le développement :
+
+* f1 : Afficher ou masquer les boîtes de collision sur la map ;
+
+* f2 : Basculer entre la vue libre (à la souris) et la vue normale ;
+
+* f3 : Afficher ou masquer des informations supplémentaires (pour l'instant, uniquement la position de la souris).
+
+
 À faire :
 ---------
 
