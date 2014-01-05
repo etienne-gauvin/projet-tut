@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="24" height="16" tilewidth="48" tileheight="48">
+ <tileset firstgid="1" source="../../tilesets/forest.tsx"/>
+ <tileset firstgid="30" source="../../tilesets/forest.tsx"/>
+ <layer name="ground" width="24" height="16">
+  <data encoding="base64" compression="zlib">
+   eJy1VNEOwiAM7J/ozAI4A9uD8f8/TRq5eK1kmsiaXCALXHvXDpH/I1SshETriLhXPCrmxhsbdxnEjwiNuzTofqq4DOJXHdAAfsVyUA5o0f02iF8jy8t/9EBxhAbmV3zTcKo4E/Z6h5lFjl/6kMXOnq7XHX6uHXd651H3TazmvZoynUny7rWenwjgRQ2YC56Pnq+BeDnHSlxR7IzxntcefyY+cLF2fOeai9i5w/1FbN/ZS/8esQ8A+5jk8//E9yhWc3Gcvm7vE/vDufl+FPuOzq5mrsXzs1esw/vHHj8BKLYknw==
+  </data>
+ </layer>
+</map>
