@@ -3,6 +3,7 @@ require 'core/libs/middleclass'
 
 -- Raccourcis accessibles sur toutes les pages
 Vector = require 'core/libs/vector'
+Color = require 'core/libs/color'
 graphics = love.graphics
 keyboard = love.keyboard
 mouse = love.mouse

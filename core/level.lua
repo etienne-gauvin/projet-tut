@@ -9,6 +9,7 @@ local Level = Object:subclass('Level')
 function Level:initialize(name, map, cameraFocus)
   self.name = name
   self.map = map
+  self.backgroundColor = self.backgroundColor or Color:new({r=155, g=194, b=140})
   
   -- Création du monde
   physics.setMeter(64)
@@ -65,7 +66,7 @@ end
 function Level:draw()
   
   -- Fond
-  graphics.setColor(155, 194, 140)
+  graphics.setColor(self.backgroundColor:get())
   graphics.rectangle('fill', 0, 0, screen.w(), screen.h())
   
   -- Caméra
@@ -79,6 +80,7 @@ function Level:draw()
     -- Affichage des hitboxes
     for i, hitBox in ipairs(self.staticHitboxes) do
       graphics.setColor(96, 196, 0, 96)
+      graphics.setLineWidth(1)
       graphics.polygon("fill", hitBox.body:getWorldPoints(hitBox.shape:getPoints()))
       graphics.setColor(96, 196, 0, 192)
       graphics.polygon("line", hitBox.body:getWorldPoints(hitBox.shape:getPoints()))

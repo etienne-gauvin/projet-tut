@@ -22,7 +22,7 @@ core.load = require 'core/load'
 core.config = (require 'core/config'):new()
 
 -- Classe caméra
-core.Camera = require 'core/camera'
+core.Camera = require 'core/libs/camera'
 
 -- Calques d'affichage
 core.layers = (require 'core/layer'):new('main')
