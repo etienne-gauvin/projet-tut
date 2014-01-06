@@ -28,7 +28,11 @@
  </tileset>
  <layer name="ground" width="64" height="24">
   <data encoding="base64" compression="zlib">
-   eJztVgluwjAQdAuUw1DiVOr1/4fWKzLSMlob28ohqlga5SB7zOyujXPLrpeFsfSaI8eV/8p/5f+c/KeOt/Ra+T8P/7nP5pX/+At+XyO2jbZTz80c/LuIvtH2P/A/RvhG2wO9Ry8JNuoez7vGOFPxl3zfI4K75Via38HIC75OA4K6F4jGF1enx9T8j5TjR4XtNeJTvRNfwvkt4ifie4Dc7ylOabwS/ui5lt4C/37I/Uwxc5Ae0Py/3I3vrxFLftM6+OF6LsgxxV94Sw+h5x75snxz/aU/d65cg2tlTGgEHTAPqdql4mLWepV7Te147/fuvifHPpfZhnWvyZ33mda84ccT/1odMX8bgt7joBOunYopc1fad8xdfKB+ubwxK3rvtTQs0VHz3Rp+0JPQVXPD4vqX6t65+57ns4U15D0iqO9Phi8+o7iuFl/vbB2tfUXzZ7uLUSPNJ9WvudyRK8+4N/zgmc9tq7Y1QGydG/ewZQcbaM9c2A7vmGsOJd9ZWrX6znG1dA/KpjZ+bY30dYxYIXGfmt+U7aOasD+OVcJF/rP9AX51E6c=
+   eJztVotuwjAMzEYZ0MIgIG2M///QxWpPck9OSSrSFqmRTn3Fj7Mdu87Nuz5mxtxrCh9X/iv/lf978i9tb+71Lvw/A6qAbWF/lsJf+G5cy1mu3wE+4Jjg85Lnc6r+S0DjWs7XgDrgK+AxksfS+KOerSXfkG+JgfC+uz73kmsK/pLfa2QPvvkOtwn8snwsyf/g2txa6zfgT+FBsnvaj1pCr6joObdnluav6zunp+8Nv6Cr7uDVvUBifHJ58SjN/0A+3gYl+rLngB/1TnQJZ+kRUiv3DnK/Izup9lLn05h5rPnjjOfMNKkBzV/OCnojL5wjxKHprscEH2P8MZdRc890Wbo5/1KfW5ceg3OmTcQIccB5iOUuZhdnDfMY/HNnKvp74/o1+eq5zDIc9xzfuc+M9Rt6GuKfG0ecvw1B9zjECVf8U6FPptYdcxcdyN+Q3/ofVv/HxnpSKt/K0IOaRFw1NyzOf2rcL65f8zxbOIbcI7zaXxu6eEZxXi2+jbPjaPUVzZ/lTkaONJ9YvQ75Dl/5jDeGHjzz3LZymwPY1r5xDVtykEHsmQvL4R1zHULKPitWY3UPcbXi7pVMrv3cHOnrK2z5yH3s/MZkn+WE9bGtFC7yz/YP7DwVgw==
   </data>
  </layer>
+ <objectgroup name="controls" width="64" height="24">
+  <object name="level-start" type="Début de niveau" x="192" y="912" width="48" height="48"/>
+  <object name="level-end" type="Fin de niveau" x="2736" y="576" width="240" height="288"/>
+ </objectgroup>
 </map>
