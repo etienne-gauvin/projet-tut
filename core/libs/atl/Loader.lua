@@ -200,7 +200,7 @@ function Loader._expandMap(name, t)
     -- Create the map from the settings
     local map = Map:new(name, tonumber(t.xarg.width),tonumber(t.xarg.height), 
                         tonumber(t.xarg.tilewidth), tonumber(t.xarg.tileheight), 
-                        t.xarg.orientation, props.atl_directory or fullpath, props)
+                        t.xarg.orientation, props.atl_directory or fullpath, props, t.xarg.backgroundcolor)
 
     -- Apply the loader settings if atl_useSpriteBatch or atl_drawObjects was not set
     map.useSpriteBatch = map.useSpriteBatch == nil and Loader.useSpriteBatch or map.useSpriteBatch 

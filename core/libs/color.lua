@@ -21,7 +21,7 @@ local function hsl2rgb(h, s, l, a)
 end
 
 -- Initialisation
--- c : {r, g, b, [a]} ou {h, s, l, [a]} ou rien pour du blanc
+-- c : {r, g, b, [a]} ou {h, s, l, [a]} ou #RRGGBB[AA] ou rien pour du blanc
 function Color:initialize(c)
   if c then
     self:set(c)
@@ -31,9 +31,22 @@ function Color:initialize(c)
 end
 
 -- Définir la couleur (similaire au constructeur)
--- c : {r, g, b, [a]} ou {h, s, l, [a]}
+-- c : {r, g, b, [a]} ou {h, s, l, [a]} ou #RRGGBB[AA]
 function Color:set(c)
-  if c then
+  if type(c) == 'string' then
+    local r, g, b, a = string.match(c, "#(%x%x)(%x%x)(%x%x)(%x%x)")
+    
+    if not r then
+      r, g, b = string.match(c, "#(%x%x)(%x%x)(%x%x)")
+      a = 'FF'
+    end
+    
+    self.r = tonumber('0x' .. r)
+    self.g = tonumber('0x' .. g)
+    self.b = tonumber('0x' .. b)
+    self.a = tonumber('0x' .. a)
+    
+  elseif type(c) == 'table' then
     if c.r and c.g and c.g then
       self.r = c.r
       self.g = c.g
@@ -54,13 +67,27 @@ end
 
 -- Retourne un clone de la couleur
 function Color:clone()
-  return Color:new(self)
+  return Color:new({r=self.r, g=self.g, b=self.b, a=self.a})
 end
 
 -- Inverse la couleur
 -- invertAlpha = false
 function Color:invert(invertAlpha)
   self:set({r = 255 - self.r, g = 255 - self.g, b = 255 - self.b, a = invertAlpha and 255 - self.a or self.a})
+end
+
+-- Assombrir
+function Color:darken(percent)
+  local r, g, b =
+    self.r - self.r * percent,
+    self.g - self.g * percent,
+    self.b - self.b * percent
+  
+  self.r = r >= 0 and math.floor(r) or 0
+  self.g = g >= 0 and math.floor(g) or 0
+  self.b = r >= 0 and math.floor(b) or 0
+  
+  return self
 end
 
 return Color

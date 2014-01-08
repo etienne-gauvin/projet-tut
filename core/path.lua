@@ -84,9 +84,10 @@ function path.load(directory, capture, callback)
       and string.match(itemName, capture)
       and not string.match(itemName, '^init%.lua')
     then
-    
-      itemArray[tonumber(name) or path.camelcase(name)] = callback(itemPath)
-      print(tonumber(name) or path.camelcase(name))
+      
+      local value = callback(itemPath)
+      itemArray[name] = value
+      itemArray[tonumber(name) or path.camelcase(name)] = value
     
     -- Dossier
     elseif love.filesystem.isDirectory(itemPath) then

@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" width="64" height="24" tilewidth="48" tileheight="48">
+<map version="1.0" orientation="orthogonal" width="64" height="24" tilewidth="48" tileheight="48" backgroundcolor="#9eaa81">
+ <properties>
+  <property name="background-1-image" value="trees-2"/>
+ </properties>
  <tileset firstgid="1" name="forest" tilewidth="48" tileheight="48">
   <image source="../../tilesets/forest.png" width="336" height="192"/>
   <terraintypes>

@@ -1,6 +1,8 @@
 -- Raccourcis
 local physics = love.physics
 local graphics = love.graphics
+local Layer = require 'core/layer'
+local ParallaxLayer = require 'core/parallax-layer'
 
 -- Un niveau du jeu
 local Level = Object:subclass('Level')
@@ -9,26 +11,60 @@ local Level = Object:subclass('Level')
 function Level:initialize(name, map, cameraFocus)
   self.name = name
   self.map = map
-  self.backgroundColor = self.backgroundColor or Color:new({r=155, g=194, b=140})
+  self.playState = game.states.play
+  self.layer = Layer:new('level-layer')
+  self.layer:addSubLayer(Layer:new('background'))
+  
+  -- Couleur de fond de la map
+  self.backgroundColor = Color:new(self.map.backgroundColor)
+  
+  -- Ajout des calques de fond
+  local i, props = 1, self.map.properties
+  
+  while self.map.properties['background-' .. i .. '-image'] do
+    local hspeed, vspeed =
+      tonumber(props['background-' .. i .. '-hspeed']) or (-0.3 * i),
+      tonumber(props['background-' .. i .. '-vspeed']) or (-0.1 * i)
+    
+    local image = resources.images.backgrounds[props['background-' .. i .. '-image']]
+    local color = props['background-' .. i .. '-color'] or self.backgroundColor:clone():darken(0.2 * i)
+    
+    if not image then
+      local imageName = props['background-' .. i .. '-image']
+      error("Erreur : l'image de fond '" .. imageName .. "' est introuvable "
+          .."à l'emplacement 'resources/backgrounds/" .. imageName .. ".png'\n"
+          .."Voir dans les propriétés de la carte '" .. map.properties.filePath .. "'")
+    end
+    
+    self.layer:sub('background'):addSubLayer(ParallaxLayer:new(i, hspeed, vspeed, image, color))
+    
+    i = i + 1
+  end
   
   -- Création du monde
   physics.setMeter(64)
   self.world = physics.newWorld(0, 9.81 * physics.getMeter(), true)
   
-  -- Tableau des boîtes de collision statiques
-  self.staticHitboxes = {}
+  -- Chargement des boîtes de collision statiques
+  self.staticHitboxes = self:loadStaticHitBoxes()
+end
+
+-- Chargement des boîtes de collision statiques
+function Level:loadStaticHitBoxes()
+  local staticHitboxes = {}
   
   for x, y, tile in self.map.layers.ground:rectangle(0, 0, self.map.width - 1, self.map.height - 1) do
-    
     if tile.properties.solid then
       local hitBox = {}
       hitBox.body = physics.newBody(self.world, x * tile.width + tile.width / 2, y * tile.height + tile.height / 2)
       hitBox.shape = physics.newRectangleShape(tile.width, tile.height)
       hitBox.fixture = physics.newFixture(hitBox.body, hitBox.shape)
       
-      table.insert(self.staticHitboxes, hitBox)
+      table.insert(staticHitboxes, hitBox)
     end
   end
+  
+  return staticHitboxes
 end
 
 -- Mise à jour
@@ -68,6 +104,7 @@ function Level:draw()
   -- Fond
   graphics.setColor(self.backgroundColor:get())
   graphics.rectangle('fill', 0, 0, screen.w(), screen.h())
+  self.layer:sub('background'):draw()
   
   -- Caméra
   game.camera:attach()
