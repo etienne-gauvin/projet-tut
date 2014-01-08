@@ -35,3 +35,8 @@ end
 function love.keypressed(key)
   core.keypressed(key)
 end
+
+-- Gestion des clics
+function love.mousepressed(x, y, button)
+  core.mousepressed(x, y, button)
+end

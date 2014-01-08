@@ -22,4 +22,12 @@ end
 function State:draw()
 end
 
+-- Touche pressée
+function State:keypressed(key)
+end
+
+-- Touche pressée
+function State:mousepressed(x, y, button)
+end
+
 return State

@@ -16,4 +16,11 @@ return function(key)
   if key == 'f3' then
     core.debug.drawMapInfos = not core.debug.drawMapInfos
   end
+  
+  if key == 'f4' then
+    core.stateHandler:switchTo(game.states.levelSelection)
+  end
+  
+  -- Propagation
+  core.stateHandler.current:keypressed(key)
 end

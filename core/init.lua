@@ -36,6 +36,9 @@ core.draw = require 'core/draw'
 -- Fonction d'appui sur un bouton
 core.keypressed = require 'core/keypressed'
 
+-- Fonction de clic avec la souris
+core.mousepressed = require 'core/mousepressed'
+
 -- Fonctions de manipulation des répertoires
 core.path = require 'core/path'
 
@@ -43,7 +46,8 @@ core.path = require 'core/path'
 core.debug = {
   drawHitboxes = false,
   freeCamera = true,
-  drawMapInfos = true
+  drawMapInfos = true,
+  drawLevelSelectionPanel = true
 }
 
 return core

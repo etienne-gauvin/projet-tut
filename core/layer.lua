@@ -79,6 +79,7 @@ end
 -- layerToRemoveName : nom du calque à supprimer
 function Layer:removeSubLayer(layer)
   local sublayer, sublayerid = self:getSubLayer(layer.name)
+  print(layer.name, sublayerid)
   self.layers[sublayerid] = nil
 end
 
