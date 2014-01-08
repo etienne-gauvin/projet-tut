@@ -13,7 +13,7 @@ Les fichiers _init.lua_ permettent de charger les données automatiquement de ch
 
 Informations spécifiques à chaque type de ressource :
 
-+ **imagefonts** : au format PNG, le charset se trouvent dans le _init.lua_ ;
++ **imagefonts** : au format PNG, le charset se trouve dans le _init.lua_ ;
 
 + **images** : au format PNG ;
 
