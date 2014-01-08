@@ -3,4 +3,4 @@ local function load(filePath)
   return graphics.newImage(filePath)
 end
 
-return core.path.load('resources/images', '%.(png|gif|jpg|jpeg|bmp)$', load)
+return core.path.load('resources/images', '%.png$', load)
