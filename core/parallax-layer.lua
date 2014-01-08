@@ -17,20 +17,16 @@ end
 function ParallaxLayer:draw(dt)
   if self.image then
     game.camera:attach()
-    
-    local screenW, screenH, imageW, imageH = screen.w(), screen.h(), self.image:getWidth(), self.image:getHeight()
-    local x, y =
-      game.camera.x * self.hspeed,
-      game.camera.y * self.vspeed
-    
-    x = x % (screenW * x / math.abs(x))
-    
-    local tx = math.floor((game.camera.x + game.camera.x * self.hspeed) / imageW)
-    
     graphics.setColor(self.color:get())
     
-    for ix = -1, 1  do
-      graphics.draw(self.image, (tx + ix) * imageW + x, y)
+    local screenW, screenH = screen.w(), screen.h()
+    local imageW, imageH = self.image:getWidth(), self.image:getHeight()
+    local cameraX, cameraY = game.camera.x, game.camera.y
+    local x, y = cameraX * self.hspeed, cameraY * self.hspeed
+    
+    
+    for ix = 0,0  do
+      graphics.draw(self.image, x, y)
     end
     
     game.camera:detach()

@@ -46,7 +46,7 @@ core.path = require 'core/path'
 core.debug = {
   drawHitboxes = false,
   freeCamera = true,
-  drawMapInfos = true,
+  drawMapInfos = false,
   drawLevelSelectionPanel = true
 }
 

@@ -72,7 +72,7 @@ function LevelSelectionState:draw()
   -- En-tête
   graphics.setColor(255, 255, 255)
   graphics.setFont(resources.imagefonts.pixelShadowedLarge)
-  graphics.printf("Selectionner un niveau de jeu", 0, 20, screen.w(), 'center')
+  graphics.printf("Selectionner un niveau", 0, 20, screen.w(), 'center')
   
   -- Affichage de tous les noms de map
   graphics.setFont(resources.imagefonts.pixelShadowed)

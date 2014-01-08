@@ -4,7 +4,7 @@ Informations utiles au développement.
 
 ## Ressources et scripts
 
-Les ressources sont automatiquement chargés lors du démarrage du jeu dans la variable globale _resources_.
+Les ressources sont automatiquement chargées lors du démarrage du jeu dans la variable globale _resources_.
 Les scripts sont utilisés ponctuellement dans le code.
 
 Ces données sont organisées d'après les noms de répertoires et les noms des fichiers, avec quelques traitements. Les extensions des fichiers sont enlevées. Les fichiers peuvent être retrouvés sous leur nom original ou leur nom au format camel case. Par exemple le fichier "_resources/images/backgrounds/trees-silhouette.png_" peut-être trouvé dans les variables _resources.images.backgrouds["trees-silhouette"]_ et _resources.images.backgrouds.treesSilhouette_.
