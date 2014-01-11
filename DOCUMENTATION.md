@@ -38,11 +38,11 @@ Informations spécifiques à chaque type de ressource :
       
         - _background-**x**-image_ : le nom de l'image d'arrière plan, se trouvant dans le répertoire _resources/maps/backgrounds_, par exemple _"trees-2"_ pour le fichier _resources/maps/backgrounds/trees-2.png_
         
-        - [optionnel] _background-**x**-hspeed_ : la vitesse de défilement horizontal du plan par rapport à la caméra, par exemple _-0.3_ ; par défaut celle-ci est _-0.3 * **x**_
+        - [optionnel] _background-**x**-hspeed_ : la vitesse de défilement horizontal du plan par rapport à la caméra, par exemple _-1.6_ ; par défaut celle-ci est _-1.4 * **x**_
         
-        - [optionnel] _background-**x**-vspeed_ : la vitesse de défilement verticale du plan par rapport à la caméra, par exemple _-0.3_ ; par défaut celle-ci est _-0.1 * **x**_
+        - [optionnel] _background-**x**-vspeed_ : la vitesse de défilement verticale du plan par rapport à la caméra, par exemple _-1.1_ ; par défaut celle-ci est _-1.2 * **x**_
         
-        - [optionnel] _background-**x**-color_ : la couleur du plan ; par défaut celle-ci est la couleur de fond de la map plus sombre de _**x** * 20%_
+        - [optionnel] _background-**x**-color_ : la couleur du plan au format #RRGGBB ou #RRGGBBAA ; par défaut celle-ci est la couleur de fond de la map plus sombre de _**x** * 20%_
     
 * Créer les calques et leur contenu :
     
