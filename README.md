@@ -38,8 +38,9 @@ Il y a quelques fonctionnalités accessibles par le clavier, et utiles pour le d
 
 * f2 : Basculer entre la vue libre (à la souris) et la vue normale ;
 
-* f3 : Afficher ou masquer des informations supplémentaires (pour l'instant, uniquement la position de la souris).
+* f3 : Afficher ou masquer des informations de développement (position de la souris, de la caméra, FPS, lignes centrales).
 
+* f4 : Aller à l'écran de choix du niveau
 
 À faire :
 ---------
@@ -54,9 +55,10 @@ Il y a quelques fonctionnalités accessibles par le clavier, et utiles pour le d
 Fait :
 ------
 
+- Écran de choix de la map
+
 - Chargement et afficher les maps
 
 - Créer le système de gestion des états du jeu
 
 - Créer le système de chargement du jeu
-

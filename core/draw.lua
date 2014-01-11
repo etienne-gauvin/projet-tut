@@ -9,6 +9,7 @@ return function()
     
     -- Affichage des lignes centrales
     graphics.setLineWidth(1)
+    graphics.setColor(128, 128, 128)
     graphics.line(0, screen.h() / 2 - 0.5, screen.w(), screen.h() / 2 - 0.5)
     graphics.line(screen.w() / 2 - 0.5, 0, screen.w() / 2 - 0.5, screen.h())
     

@@ -46,7 +46,6 @@ function LevelSelectionState:update(dt)
   
   for h, hitBox in ipairs(self.hitBoxes) do
     if my >= hitBox.y and my < hitBox.y + 20 then
-      print(hitBox.level)
       self.levelSelected = hitBox.level
     end
   end

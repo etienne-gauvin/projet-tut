@@ -16,20 +16,18 @@ end
 -- Affichage
 function ParallaxLayer:draw(dt)
   if self.image then
-    game.camera:attach()
     graphics.setColor(self.color:get())
     
     local screenW, screenH = screen.w(), screen.h()
     local imageW, imageH = self.image:getWidth(), self.image:getHeight()
     local cameraX, cameraY = game.camera.x, game.camera.y
-    local x, y = cameraX * self.hspeed, cameraY * self.hspeed
+    local x, y =
+      (cameraX * self.hspeed) % imageW,
+      cameraY * self.vspeed % imageH
     
-    
-    for ix = 0,0  do
-      graphics.draw(self.image, x, y)
+    for ix = -1, 1  do
+      graphics.draw(self.image, math.floor(x) + ix * imageW, math.floor(y) - (imageH + screenH / 2) / 2)
     end
-    
-    game.camera:detach()
   end
 end
 
