@@ -31,9 +31,15 @@
   <tile id="24" terrain="0,0,,"/>
   <tile id="25" terrain="0,,,"/>
  </tileset>
+ <tileset firstgid="29" source="../../tilesets/dangerous.tsx"/>
  <layer name="ground" width="64" height="24">
   <data encoding="base64" compression="zlib">
    eJztVotuwjAMzEYZ0MIgIG2M///QxWpPck9OSSrSFqmRTn3Fj7Mdu87Nuz5mxtxrCh9X/iv/lf978i9tb+71Lvw/A6qAbWF/lsJf+G5cy1mu3wE+4Jjg85Lnc6r+S0DjWs7XgDrgK+AxksfS+KOerSXfkG+JgfC+uz73kmsK/pLfa2QPvvkOtwn8snwsyf/g2txa6zfgT+FBsnvaj1pCr6joObdnluav6zunp+8Nv6Cr7uDVvUBifHJ58SjN/0A+3gYl+rLngB/1TnQJZ+kRUiv3DnK/Izup9lLn05h5rPnjjOfMNKkBzV/OCnojL5wjxKHprscEH2P8MZdRc890Wbo5/1KfW5ceg3OmTcQIccB5iOUuZhdnDfMY/HNnKvp74/o1+eq5zDIc9xzfuc+M9Rt6GuKfG0ecvw1B9zjECVf8U6FPptYdcxcdyN+Q3/ofVv/HxnpSKt/K0IOaRFw1NyzOf2rcL65f8zxbOIbcI7zaXxu6eEZxXi2+jbPjaPUVzZ/lTkaONJ9YvQ75Dl/5jDeGHjzz3LZymwPY1r5xDVtykEHsmQvL4R1zHULKPitWY3UPcbXi7pVMrv3cHOnrK2z5yH3s/MZkn+WE9bGtFC7yz/YP7DwVgw==
+  </data>
+ </layer>
+ <layer name="dangerous" width="64" height="24">
+  <data encoding="base64" compression="zlib">
+   eJzt1iEOACAMA8B9BPj/L5mZnEAQEHdJfVXTCADojczMrNdFAD5UG2knAQDO1Y8C7tkarwEP
   </data>
  </layer>
  <objectgroup name="controls" width="64" height="24">
