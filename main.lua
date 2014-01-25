@@ -15,9 +15,17 @@ core = require 'core'
 function love.load()
   
   -- Chargement des fichiers, et des variables globales game, resources et screen
+  print('-- Chargement...')
+  local stime = love.timer.getTime()
   core.load()
   
+  -- Affichage du temps de chargement
+  local etime = love.timer.getTime()
+  print(string.format("-- Chargement terminé (%.3fs)", etime - stime))
+  print("")
+  
   -- Démarrage du jeu
+  print("-- Démarrage du jeu")
   core.stateHandler.current:start()
 end
 
