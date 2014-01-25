@@ -22,12 +22,20 @@ end
 function State:draw()
 end
 
--- Touche pressée
+-- Touche enfoncée
 function State:keypressed(key)
 end
 
--- Touche pressée
+-- Touche relâchée
+function State:keyreleased(key)
+end
+
+-- Clic enfoncé
 function State:mousepressed(x, y, button)
+end
+
+-- Clic relâché
+function State:mousereleased(x, y, button)
 end
 
 return State

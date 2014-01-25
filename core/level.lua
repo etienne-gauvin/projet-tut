@@ -21,7 +21,7 @@ function Level:initialize(name, map, cameraFocus)
   -- Ajout des calques de fond
   local i, props = 1, self.map.properties
   
-  while self.map.properties['background-' .. i .. '-image'] do
+  while map.properties['background-' .. i .. '-image'] do
     local hspeed, vspeed =
       tonumber(props['background-' .. i .. '-hspeed']) or (-0.3 * i),
       tonumber(props['background-' .. i .. '-vspeed']) or (-0.1 * i)
@@ -44,6 +44,7 @@ function Level:initialize(name, map, cameraFocus)
   -- Création du monde
   physics.setMeter(64)
   self.world = physics.newWorld(0, 9.81 * physics.getMeter(), true)
+  game.world = self.world
   
   -- Chargement des boîtes de collision statiques
   self.staticHitboxes = self:loadStaticHitBoxes()

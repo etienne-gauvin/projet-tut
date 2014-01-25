@@ -36,7 +36,17 @@ function love.keypressed(key)
   core.keypressed(key)
 end
 
+-- Gestion des évènements clavier
+function love.keyreleased(key)
+  core.keyreleased(key)
+end
+
 -- Gestion des clics
 function love.mousepressed(x, y, button)
   core.mousepressed(x, y, button)
+end
+
+-- Gestion des clics
+function love.mousereleased(x, y, button)
+  core.mousereleased(x, y, button)
 end
