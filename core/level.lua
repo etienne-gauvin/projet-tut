@@ -12,16 +12,32 @@ function Level:initialize(name, map, cameraFocus)
   self.name = name
   self.map = map
   self.playState = game.states.play
+  
+  -- Calques d'affichage
   self.layer = Layer:new('level-layer')
   self.layer:addSubLayer(Layer:new('background'))
   
+  -- Chargement du fond
+  self:loadBackground()
+  
+  -- Création du monde
+  physics.setMeter(64)
+  self.world = physics.newWorld(0, 9.81 * physics.getMeter(), true)
+  game.world = self.world
+  
+  -- Chargement des boîtes de collision statiques
+  self.staticHitboxes = self:loadStaticHitBoxes()
+end
+
+-- Chargement du fond du niveau
+function Level:loadBackground()
   -- Couleur de fond de la map
   self.backgroundColor = Color:new(self.map.backgroundColor)
   
   -- Ajout des calques de fond
   local i, props = 1, self.map.properties
   
-  while map.properties['background-' .. i .. '-image'] do
+  while self.map.properties['background-' .. i .. '-image'] do
     local hspeed, vspeed =
       tonumber(props['background-' .. i .. '-hspeed']) or (-0.3 * i),
       tonumber(props['background-' .. i .. '-vspeed']) or (-0.1 * i)
@@ -33,21 +49,13 @@ function Level:initialize(name, map, cameraFocus)
       local imageName = props['background-' .. i .. '-image']
       error("Erreur : l'image de fond '" .. imageName .. "' est introuvable "
           .."à l'emplacement 'resources/backgrounds/" .. imageName .. ".png'\n"
-          .."Voir dans les propriétés de la carte '" .. map.properties.filePath .. "'")
+          .."Voir dans les propriétés de la carte '" .. self.map.properties.filePath .. "'")
     end
     
     self.layer:sub('background'):addSubLayer(ParallaxLayer:new(i, hspeed, vspeed, image, color))
     
     i = i + 1
   end
-  
-  -- Création du monde
-  physics.setMeter(64)
-  self.world = physics.newWorld(0, 9.81 * physics.getMeter(), true)
-  game.world = self.world
-  
-  -- Chargement des boîtes de collision statiques
-  self.staticHitboxes = self:loadStaticHitBoxes()
 end
 
 -- Chargement des boîtes de collision statiques
@@ -76,27 +84,41 @@ function Level:update(dt)
   -- Mise à jour du moteur physique
   self.world:update(dt)
   
-  
-  -- Mise à jour de la position de la caméra
+  -- Mise à jour de la caméra
   local focus = self.cameraFocus and Vector(self.cameraFocus.pos.x, self.cameraFocus.pos.y) or Vector(0, 0)
   
-  if focus.x < screen.w() / 2 then
+  -- Caméra libre
+  if core.debug.freeCamera then
+    focus = Vector(
+      map.width * map.tileWidth * mouse.getX() / screen.w(),
+      map.height * map.tileHeight * mouse.getY() / screen.h())
+  end
+  
+  -- Limite à gauche
+  if focus.x - screen.w() / 2 < 0 then
     focus.x = screen.w() / 2
-  elseif focus.x > map.width * map.tileWidth - screen.w() / 2 then
+  end
+  
+  -- Limite à droite
+  if focus.x + screen.w() / 2 > map.width * map.tileWidth then
     focus.x = map.width * map.tileWidth - screen.w() / 2
   end
   
-  if focus.y < screen.h() / 2 then
+  -- Limite à gauche
+  if focus.y - screen.h() / 2 < 0 then
     focus.y = screen.h() / 2
-  elseif focus.y > map.height * map.tileHeight - screen.h() / 2 then
-    focus.y = map.height * map.tileHeight - screen.h() / 2
   end
   
+  -- Limite en bas
+  if focus.y + screen.h() / 2 > map.height * map.tileHeight then
+    focus.y = map.height * map.tileHeight - screen.h() / 2
+  end
+    
   -- Centrer la caméra
   game.camera:lookAt(focus.x, focus.y)
   
   -- Mettre à jour la zone affichée de la map
-  map:autoDrawRange(focus.x, focus.y, 1)
+  self.map:setDrawRange(focus.x - screen.w() / 2, focus.y - screen.h() / 2, screen.w(), screen.h())
 end
 
 -- Affichage
