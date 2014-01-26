@@ -1,7 +1,6 @@
--- Bibliothèques
-require 'core/libs/middleclass'
-
--- Raccourcis accessibles sur toutes les pages
+-- Bibliothèques & raccoucis
+local class = require 'core/libs/middleclass'
+Object = class.Object
 Vector = require 'core/libs/vector'
 Color = require 'core/libs/color'
 graphics = love.graphics
