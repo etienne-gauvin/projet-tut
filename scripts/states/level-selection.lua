@@ -108,6 +108,9 @@ end
 
 -- Touche pressée
 function LevelSelectionState:keypressed(key)
+  if self.levelSelected and key == 'return' then
+    core.stateHandler:switchTo(game.states.play, self.levelSelected)
+  end
 end
 
 -- Clic

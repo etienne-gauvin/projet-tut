@@ -3,18 +3,24 @@ local physics = love.physics
 local graphics = love.graphics
 local Layer = require 'core/layer'
 local ParallaxLayer = require 'core/parallax-layer'
+local MainCharacter = require 'entities/characters/main-character'
 
 -- Un niveau du jeu
 local Level = Object:subclass('Level')
 
 -- Initialisation
 function Level:initialize(name, map, cameraFocus)
+  
+  print("---- Chargement du niveau " .. map.name)
+  local stime = love.timer.getTime()
+  
   self.name = name
   self.map = map
   self.playState = game.states.play
   
   -- Calques d'affichage
   self.layer = Layer:new('level-layer')
+  self.layer:addSubLayer(Layer:new('objects'))
   self.layer:addSubLayer(Layer:new('background'))
   
   -- Chargement du fond
@@ -27,6 +33,45 @@ function Level:initialize(name, map, cameraFocus)
   
   -- Chargement des boîtes de collision statiques
   self.staticHitboxes = self:loadStaticHitBoxes()
+  
+  -- Chargement du personnage principal
+  self.mainCharacter = false
+  
+  -- Chargement des zones particulières (début de niveau, fin, etc.)
+  self:loadControls()
+  
+  -- Chargement des objets dynamiques (personnages, etc.)
+  self:loadObjects()
+  
+  -- Chargement terminé
+  local etime = love.timer.getTime()
+  print(string.format("---- Chargement du niveau terminé (%.3fs)", etime - stime))
+end
+
+-- Chargement des objets dynamiques (personnages, etc.)
+function Level:loadObjects()
+end
+
+-- Chargement des zones particulières (début de niveau, fin, etc.)
+function Level:loadControls()
+  self.levelEndArea = false
+  
+  if self.map.layers.controls then
+    self.map.layers.controls.visible = false
+    
+    for i, controlArea in ipairs(self.map.layers.controls.objects) do
+      
+      -- Position du personnage principal
+      if controlArea.name == 'level-start' then
+        self.mainCharacter = MainCharacter:new(controlArea.x, controlArea.y - 48 / 2)
+        self.layer:sub('objects'):addEntity(self.mainCharacter)
+      
+      -- Position de la zone de fin
+      elseif controlArea.name == 'level-end' then
+        self.levelEndArea = controlArea
+      end
+    end
+  end
 end
 
 -- Chargement du fond du niveau
@@ -84,41 +129,8 @@ function Level:update(dt)
   -- Mise à jour du moteur physique
   self.world:update(dt)
   
-  -- Mise à jour de la caméra
-  local focus = self.cameraFocus and Vector(self.cameraFocus.pos.x, self.cameraFocus.pos.y) or Vector(0, 0)
-  
-  -- Caméra libre
-  if core.debug.freeCamera then
-    focus = Vector(
-      map.width * map.tileWidth * mouse.getX() / screen.w(),
-      map.height * map.tileHeight * mouse.getY() / screen.h())
-  end
-  
-  -- Limite à gauche
-  if focus.x - screen.w() / 2 < 0 then
-    focus.x = screen.w() / 2
-  end
-  
-  -- Limite à droite
-  if focus.x + screen.w() / 2 > map.width * map.tileWidth then
-    focus.x = map.width * map.tileWidth - screen.w() / 2
-  end
-  
-  -- Limite à gauche
-  if focus.y - screen.h() / 2 < 0 then
-    focus.y = screen.h() / 2
-  end
-  
-  -- Limite en bas
-  if focus.y + screen.h() / 2 > map.height * map.tileHeight then
-    focus.y = map.height * map.tileHeight - screen.h() / 2
-  end
-    
-  -- Centrer la caméra
-  game.camera:lookAt(focus.x, focus.y)
-  
-  -- Mettre à jour la zone affichée de la map
-  self.map:setDrawRange(focus.x - screen.w() / 2, focus.y - screen.h() / 2, screen.w(), screen.h())
+  -- Mise à jour de tous les personnages et objets
+  self.layer:sub('objects'):update(dt)
 end
 
 -- Affichage
@@ -133,11 +145,19 @@ function Level:draw()
   game.camera:attach()
   
   -- Affichage de la map
+  graphics.setColor(255, 255, 255)
   self.map:draw()
   
+  -- Affichage des personnages et objets
+  graphics.setColor(255, 255, 255)
+  self.layer:sub('objects'):draw()
+  
+  -- Affichage du personnage principal
+  graphics.setColor(255, 255, 255)
+  self.mainCharacter:draw()
+  
+  -- Affichage des hitboxes
   if core.debug.drawHitboxes then
-    
-    -- Affichage des hitboxes
     for i, hitBox in ipairs(self.staticHitboxes) do
       graphics.setColor(96, 196, 0, 96)
       graphics.setLineWidth(1)

@@ -5,6 +5,7 @@ Vector = require 'core/libs/vector'
 Color = require 'core/libs/color'
 graphics = love.graphics
 keyboard = love.keyboard
+physics = love.physics
 mouse = love.mouse
 
 -- Coeur du jeu

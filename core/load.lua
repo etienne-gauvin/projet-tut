@@ -9,7 +9,7 @@ return function()
   screen.w = graphics.getWidth -- Taille réelle de l'écran
   screen.h = graphics.getHeight
   
-  -- Resources
+  -- Chargement de toutes les resources
   resources = require 'resources'
   
   -- Police par défaut
@@ -23,6 +23,9 @@ return function()
   
   -- Niveaux
   game.levels = require 'scripts/levels'
+  
+  -- Chargement des animations
+  game.anims = require 'scripts/anims'
   
   -- Démarrage du jeu
   core.stateHandler.current = game.states.start
