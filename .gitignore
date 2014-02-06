@@ -3,3 +3,4 @@
 export/
 export.sh
 geany_run_script.sh
+*.db
