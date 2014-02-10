@@ -10,7 +10,8 @@ function MainCharacter:initialize(x, y)
   self.height = 88
   
   -- Vitesse
-  self.walkSpeed = 150
+  self.walkAcceleration = 400
+  self.walkSpeed = 300
   
   -- Raccourci vers les images
   self.images = {
@@ -29,8 +30,18 @@ function MainCharacter:initialize(x, y)
   self.hitbox = {}
   self.hitbox.body = physics.newBody(game.world, self.pos.x + self.width / 2, self.pos.y + self.height / 2, 'dynamic')
   self.hitbox.body:setFixedRotation(true)
-  self.hitbox.shape = physics.newRectangleShape(self.width, self.height)
+  
+  local w, h = self.width, self.height
+  local pts = {0,0, w,0, w,h-1, w-4,h, 4,h, 0,h-1}
+  
+  for i = 1, #pts, 2 do
+    pts[i] = pts[i] - w / 2
+    pts[i + 1] = pts[i + 1] - h / 2
+  end
+  
+  self.hitbox.shape = physics.newPolygonShape(unpack(pts))
   self.hitbox.fixture = physics.newFixture(self.hitbox.body, self.hitbox.shape)
+  self.hitbox.fixture:setFriction(0)
   
 end
 
@@ -41,13 +52,34 @@ function MainCharacter:update(dt)
   self.anims[self.anim][self.direction]:update(dt)
   
   local body = self.hitbox.body
+  local velx, vely = body:getLinearVelocity()
+  print(math.floor(velx), math.floor(vely))
   
+  -- Aller à droite
   if keyboard.isDown('right') then
-    body:setPosition(body:getX() + self.walkSpeed * dt, body:getY())
+    velx = velx + self.walkAcceleration * dt
+  
+  -- Aller à gauche
+  elseif keyboard.isDown('left') then
+    velx = velx - self.walkAcceleration * dt
+  
+  -- Ralentissement
+  else
+    velx = velx / 1.2
   end
-
-  if keyboard.isDown('left') then
-    body:setPosition(body:getX() - self.walkSpeed * dt, body:getY())
+  
+  if velx > self.walkSpeed then
+    velx = self.walkSpeed
+  elseif velx < - self.walkSpeed then
+    velx = - self.walkSpeed
+  end
+  
+  -- Application de la vélocité
+  self.hitbox.body:setLinearVelocity(velx, vely)
+  
+  -- Saut
+  if keyboard.isDown('up') then
+    body:applyLinearImpulse(0, -20)
   end
 end
 
