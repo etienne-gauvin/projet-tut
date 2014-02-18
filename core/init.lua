@@ -56,7 +56,7 @@ core.path = require 'core/path'
 
 -- Déboguage
 core.debug = {
-  drawHitboxes = true,
+  drawHitboxes = false,
   freeCamera = false,
   drawMapInfos = false,
   drawLevelSelectionPanel = true,
