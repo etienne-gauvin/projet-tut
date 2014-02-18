@@ -8,8 +8,11 @@ function Entity:initialize(x, y, angle, name, ox, oy)
   self.pos = Vector(x or 0, y or 0) -- Position de l'entité
   self.origin = Vector(ox or 0, oy or 0) -- Point central de l'entité
   self.angle = angle or 0
+  
   self.enabled = true
   self.toDestroy = false
+  
+  self.collisions = {}
   
   --print("Nouvelle entité #" .. self.id)
 end
@@ -42,6 +45,9 @@ function Entity:destroy()
   
   if self.body then self.body:destroy() end
   
+  self.enabled = false
+  self.toDestroy = true
+  
   --print("Destruction de l'entité #" .. self.id)
 end
 
@@ -56,13 +62,47 @@ function Entity:update(dt)
   end
 end
 
--- Afichage de l'entité
+-- Affichage de l'entité
 function Entity:draw()
 end
 
+-- Tester la collision avec une autre entité
+function Entity:collidesWith(entity)
+  for i, coll in ipairs(self.collisions) do
+    if coll.entity == entity then
+      return true
+    end
+  end
+  return false
+end
+
+-- Tester la collision avec un autre type d'entité
+function Entity:collidesWithA(aClass)
+  for i, coll in ipairs(self.collisions) do
+    if coll.entity:isInstanceOf(aClass) then
+      return true
+    end
+  end
+  return false
+end
+
 -- Lors d'une collision
-function Entity:beginContact(entity, contact, velocity) end
-function Entity:endContact(entity, contact, velocity) end
+function Entity:beginContact(entity, contact, velocity)
+  table.insert(self.collisions, {
+    entity = entity,
+    contact = contact,
+    velocity = velocity
+  })
+end
+
+function Entity:endContact(entity, contact, velocity)
+  for i, coll in ipairs(self.collisions) do
+    if coll.entity == entity then
+      table.remove(self.collisions, i)
+    end
+  end
+end
+
 function Entity:preSolve(entity, contact, velocity) end
 function Entity:postSolve(entity, contact, velocity) end
 

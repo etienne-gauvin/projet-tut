@@ -1,4 +1,6 @@
 local Character = require 'entities/character'
+local Feet = require 'entities/feet'
+local Block = require 'entities/block'
 local MainCharacter = Character:subclass('MainCharacter')
 
 -- Initialisation
@@ -6,11 +8,11 @@ function MainCharacter:initialize(x, y)
   Character.initialize(self, x, y)
   
   -- Dimensions du perso principal
-  self.width = 38
+  self.width = 32
   self.height = 88
   
   -- Vitesse
-  self.walkAcceleration = 400
+  self.walkAcceleration = 800
   self.walkSpeed = 300
   
   -- Raccourci vers les images
@@ -27,9 +29,8 @@ function MainCharacter:initialize(x, y)
   }
   
   -- hitbox
-  self.hitbox = {}
-  self.hitbox.body = physics.newBody(game.world, self.pos.x + self.width / 2, self.pos.y + self.height / 2, 'dynamic')
-  self.hitbox.body:setFixedRotation(true)
+  self.body = physics.newBody(game.world, self.pos.x + self.width / 2, self.pos.y + self.height / 2, 'dynamic')
+  self.body:setFixedRotation(true)
   
   local w, h = self.width, self.height
   local pts = {0,0, w,0, w,h-1, w-4,h, 4,h, 0,h-1}
@@ -39,10 +40,11 @@ function MainCharacter:initialize(x, y)
     pts[i + 1] = pts[i + 1] - h / 2
   end
   
-  self.hitbox.shape = physics.newPolygonShape(unpack(pts))
-  self.hitbox.fixture = physics.newFixture(self.hitbox.body, self.hitbox.shape)
-  self.hitbox.fixture:setFriction(0)
+  self.shape = physics.newPolygonShape(unpack(pts))
+  self.fixture = physics.newFixture(self.body, self.shape)
+  self.fixture:setUserData({entity = self})
   
+  self.feet = Feet:new(self)
 end
 
 -- Mise à jour
@@ -51,9 +53,8 @@ function MainCharacter:update(dt)
   
   self.anims[self.anim][self.direction]:update(dt)
   
-  local body = self.hitbox.body
+  local body = self.body
   local velx, vely = body:getLinearVelocity()
-  print(math.floor(velx), math.floor(vely))
   
   -- Aller à droite
   if keyboard.isDown('right') then
@@ -65,7 +66,7 @@ function MainCharacter:update(dt)
   
   -- Ralentissement
   else
-    velx = velx / 1.2
+    velx = velx / 1.5
   end
   
   if velx > self.walkSpeed then
@@ -75,11 +76,13 @@ function MainCharacter:update(dt)
   end
   
   -- Application de la vélocité
-  self.hitbox.body:setLinearVelocity(velx, vely)
+  self.body:setLinearVelocity(velx, vely)
   
   -- Saut
   if keyboard.isDown('up') then
-    body:applyLinearImpulse(0, -20)
+    if not self.isJumping and self.feet:collidesWithA(Block) then
+      body:applyLinearImpulse(0, -100)
+    end
   end
 end
 

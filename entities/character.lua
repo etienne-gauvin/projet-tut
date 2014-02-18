@@ -16,18 +16,21 @@ function Character:initialize(x, y)
   self.isFalling = false
   self.isMoving = false -- right|left
   
+  -- Timers
+  self.jumpTimer = 0
+  
   -- Boîte de collisions
-  self.hitbox = false
+  self = false
 end
 
 -- Mise à jour
 function Character:update(dt)
   Entity.update(self, dt)
   
-  if self.hitbox then
+  if self then
     self.pos.x, self.pos.y =
-      self.hitbox.body:getX() - self.width / 2,
-      self.hitbox.body:getY() - self.height / 2
+      self.body:getX() - self.width / 2,
+      self.body:getY() - self.height / 2
   end
   
   
@@ -42,11 +45,13 @@ function Character:draw()
   --  math.floor(self.pos.x + self.origin.x - self.image:getWidth() / 2),
   --  math.floor(self.pos.y + self.origin.y - self.image:getWidth() / 2))
   
-  if self.hitbox and core.debug.drawHitboxes then
+  if self and core.debug.drawHitboxes then
     graphics.setColor(0, 0, 255, 32)
-    love.graphics.polygon("fill", self.hitbox.body:getWorldPoints(self.hitbox.shape:getPoints()))
+    love.graphics.polygon("fill", self.body:getWorldPoints(self.shape:getPoints()))
     graphics.setColor(0, 0, 255, 128)
-    love.graphics.polygon("line", self.hitbox.body:getWorldPoints(self.hitbox.shape:getPoints()))
+    love.graphics.polygon("line", self.body:getWorldPoints(self.shape:getPoints()))
+    graphics.setColor(0, 128, 255, 255)
+    love.graphics.polygon("fill", self.body:getWorldPoints(self.feet.shape:getPoints()))
   end
 end
 

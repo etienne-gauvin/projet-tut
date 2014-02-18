@@ -4,6 +4,7 @@ local graphics = love.graphics
 local Layer = require 'core/layer'
 local ParallaxLayer = require 'core/parallax-layer'
 local MainCharacter = require 'entities/characters/main-character'
+local Block = require 'entities/block'
 
 -- Un niveau du jeu
 local Level = Object:subclass('Level')
@@ -31,8 +32,15 @@ function Level:initialize(name, map, cameraFocus)
   self.world = physics.newWorld(0, 9.81 * physics.getMeter(), true)
   game.world = self.world
   
+  self.world:setCallbacks(
+    function(a, b, c) Level.beginContact(self, a, b, c) end,
+    function(a, b, c) Level.endContact(self, a, b, c) end,
+    function(a, b, c) Level.preSolve(self, a, b, c) end,
+    function(a, b, c) Level.postSolve(self, a, b, c) end
+  )
+  
   -- Chargement des boîtes de collision statiques
-  self.staticHitboxes = self:loadStaticHitBoxes()
+  self.blocks = self:loadBlocks()
   
   -- Chargement du personnage principal
   self.mainCharacter = false
@@ -104,21 +112,14 @@ function Level:loadBackground()
 end
 
 -- Chargement des boîtes de collision statiques
-function Level:loadStaticHitBoxes()
-  local staticHitboxes = {}
+function Level:loadBlocks()
+  local blocks = {}
   
   for x, y, tile in self.map.layers.ground:rectangle(0, 0, self.map.width - 1, self.map.height - 1) do
-    if tile.properties.solid then
-      local hitBox = {}
-      hitBox.body = physics.newBody(self.world, x * tile.width + tile.width / 2, y * tile.height + tile.height / 2)
-      hitBox.shape = physics.newRectangleShape(tile.width, tile.height)
-      hitBox.fixture = physics.newFixture(hitBox.body, hitBox.shape)
-      
-      table.insert(staticHitboxes, hitBox)
-    end
+    table.insert(blocks, Block:new(x, y, tile))
   end
   
-  return staticHitboxes
+  return blocks
 end
 
 -- Mise à jour
@@ -158,12 +159,14 @@ function Level:draw()
   
   -- Affichage des hitboxes
   if core.debug.drawHitboxes then
-    for i, hitBox in ipairs(self.staticHitboxes) do
-      graphics.setColor(96, 196, 0, 96)
-      graphics.setLineWidth(1)
-      graphics.polygon("fill", hitBox.body:getWorldPoints(hitBox.shape:getPoints()))
-      graphics.setColor(96, 196, 0, 192)
-      graphics.polygon("line", hitBox.body:getWorldPoints(hitBox.shape:getPoints()))
+    for i, block in ipairs(self.blocks) do
+      if block.isSolid then
+        graphics.setColor(96, 196, 0, 96)
+        graphics.setLineWidth(1)
+        graphics.polygon("fill", block.body:getWorldPoints(block.shape:getPoints()))
+        graphics.setColor(96, 196, 0, 192)
+        graphics.polygon("line", block.body:getWorldPoints(block.shape:getPoints()))
+      end
     end
   end
   
@@ -184,6 +187,52 @@ function Level:levelEnd()
   
   -- Avertir la PlayState de la fin du niveau
   core.states.play:levelEnd()
+end
+
+-- Retourne les paramètres utiles de la collision entre objets
+-- return : entityA, entityB, contact, velocity
+function getContactParams(fixtureA, fixtureB, contact)
+  local x1, y1 = fixtureA:getBody():getLinearVelocity()
+  local x2, y2 = fixtureB:getBody():getLinearVelocity()
+
+  return
+    fixtureA:getUserData().entity,
+    fixtureB:getUserData().entity,
+    contact,
+    math.sqrt(math.pow(x2 - x1, 2) + math.pow(y2 - y1, 2))
+end
+
+-- Début de la collision de deux objets
+function Level:beginContact(fixtureA, fixtureB, contact)
+  local entityA, entityB, contact, velocity = getContactParams(fixtureA, fixtureB, contact)
+  print("[coll] (" .. entityA.id .. ", " .. entityB.id .. ")")
+
+  entityA:beginContact(entityB, contact, velocity, fixtureB, fixtureA)
+  entityB:beginContact(entityA, contact, velocity, fixtureA, fixtureB)
+end
+
+-- Fin de la collision de deux objets
+function Level:endContact(fixtureA, fixtureB, contact)
+  local entityA, entityB, contact, velocity = getContactParams(fixtureA, fixtureB, contact)
+  
+  entityA:endContact(entityB, contact, velocity, fixtureB, fixtureA)
+  entityB:endContact(entityA, contact, velocity, fixtureA, fixtureB)
+end
+
+-- Début du calcul de la collision de deux objets
+function Level:preSolve(fixtureA, fixtureB, contact)
+  local entityA, entityB, contact, velocity = getContactParams(fixtureA, fixtureB, contact)
+  
+  entityA:preSolve(entityB, contact, velocity, fixtureB, fixtureA)
+  entityB:preSolve(entityA, contact, velocity, fixtureA, fixtureB)
+end
+
+-- Fin du calcul de la collision de deux objets
+function Level:postSolve(fixtureA, fixtureB, contact)
+  local entityA, entityB, contact, velocity = getContactParams(fixtureA, fixtureB, contact)
+  
+  entityA:postSolve(entityB, contact, velocity, fixtureB, fixtureA)
+  entityB:postSolve(entityA, contact, velocity, fixtureA, fixtureB)
 end
 
 return Level

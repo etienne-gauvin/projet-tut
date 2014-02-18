@@ -67,7 +67,7 @@ function PlayState:update(dt)
   end
     
   -- Centrer la caméra
-  game.camera:lookAt(focus.x, focus.y)
+  game.camera:lookAt(math.floor(focus.x), math.floor(focus.y))
   
   -- Mettre à jour la zone affichée de la map
   map:setDrawRange(focus.x - screen.w() / 2, focus.y - screen.h() / 2, screen.w(), screen.h())
