@@ -42,4 +42,22 @@ return function()
     
     graphics.setFont(resources.imagefonts.pixelNormal)
   end
+  
+  if core.debug.drawDebugVars then
+    for i, v in ipairs(core.debug.debugVars) do
+      graphics.setFont(resources.imagefonts.pixelNormal)
+      graphics.setColor(16, 16, 16)
+      
+      if type(v.value) == 'boolean' then
+        v.value = v.value and "true" or "false"
+      end
+      
+      local text = v.name .. " = " .. v.value
+      
+      graphics.setColor(16, 16, 16, 128)
+      graphics.rectangle('fill', 4, 4 + i * 24, 200, 24)
+      graphics.setColor(255, 255, 255)
+      graphics.print(v.name .. " = " .. v.value, 8, 8 + i * 24)
+    end
+  end
 end

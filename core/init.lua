@@ -59,7 +59,16 @@ core.debug = {
   drawHitboxes = true,
   freeCamera = false,
   drawMapInfos = false,
-  drawLevelSelectionPanel = true
+  drawLevelSelectionPanel = true,
+  drawDebugVars = true,
+  debugVars = {}
 }
+
+-- Ajout d'une variable à la liste d'affichage
+setmetatable(core.debug, {
+  __call = function(s, name, value)
+    table.insert(core.debug.debugVars, {name = name, value = value})
+  end
+})
 
 return core
