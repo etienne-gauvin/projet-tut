@@ -17,7 +17,8 @@ function MainCharacter:initialize(x, y)
   
   -- Raccourci vers les images
   self.images = {
-    stand = resources.images.entities.mainCharacter.standSpriteSheet
+    stand = resources.images.entities.mainCharacter.standSpriteSheet,
+    walk = resources.images.entities.mainCharacter.walkSpriteSheet
   }
   
   -- Copie des animations nécessaires
@@ -25,6 +26,10 @@ function MainCharacter:initialize(x, y)
     stand = {
       left = game.anims.mainCharacter.stand.left:clone(),
       right = game.anims.mainCharacter.stand.right:clone()
+    },
+    walk = {
+      left = game.anims.mainCharacter.walk.left:clone(),
+      right = game.anims.mainCharacter.walk.right:clone()
     }
   }
   
@@ -55,18 +60,24 @@ function MainCharacter:update(dt)
   
   local body = self.body
   local velx, vely = body:getLinearVelocity()
+  local kLeft, kRight = keyboard.isDown('left'), keyboard.isDown('right')
   
-  -- Aller à droite
-  if keyboard.isDown('right') then
-    velx = velx + self.walkAcceleration * dt
-  
-  -- Aller à gauche
-  elseif keyboard.isDown('left') then
-    velx = velx - self.walkAcceleration * dt
-  
+  if kLeft or kRight then
+    -- Aller à droite
+    if kRight then
+      velx = velx + self.walkAcceleration * dt
+    
+    -- Aller à gauche
+    elseif kLeft then
+      velx = velx - self.walkAcceleration * dt
+    end
+    
+    self.isMoving = true
+    
   -- Ralentissement
   else
     velx = velx / 1.5
+    self.isMoving = false
   end
   
   if velx > self.walkSpeed then
@@ -84,6 +95,14 @@ function MainCharacter:update(dt)
       body:applyLinearImpulse(0, -100)
     end
   end
+  
+  -- application de l'animation en fonction de l'état du personnage
+  if self.isJumping or self.isFalling then
+    self.anim = 'stand'
+  elseif self.isMoving then
+    self.anim = 'walk'
+  end
+  
 end
 
 -- Affichage
