@@ -66,10 +66,12 @@ function MainCharacter:update(dt)
     -- Aller à droite
     if kRight then
       velx = velx + self.walkAcceleration * dt
+      self.direction = 'right'
     
     -- Aller à gauche
     elseif kLeft then
       velx = velx - self.walkAcceleration * dt
+      self.direction = 'left'
     end
     
     self.isMoving = true
@@ -101,8 +103,11 @@ function MainCharacter:update(dt)
     self.anim = 'stand'
   elseif self.isMoving then
     self.anim = 'walk'
+  else
+    self.anim = 'stand'
   end
   
+  core.debug("char dir", self.direction)
 end
 
 -- Affichage
