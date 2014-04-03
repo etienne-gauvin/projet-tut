@@ -6,7 +6,7 @@
   <property name="background-1-vspeed" value="-1.1"/>
  </properties>
  <tileset firstgid="1" name="forest" tilewidth="48" tileheight="48">
-  <image source="../../tilesets/forest.png" width="336" height="192"/>
+  <image source="../../tilesets/forest.png" width="336" height="384"/>
   <terraintypes>
    <terrain name="grassy-ground" tile="-1"/>
   </terraintypes>
@@ -31,19 +31,32 @@
   <tile id="24" terrain="0,0,,"/>
   <tile id="25" terrain="0,,,"/>
  </tileset>
- <tileset firstgid="29" source="../../tilesets/dangerous.tsx"/>
+ <tileset firstgid="57" source="../../tilesets/dangerous.tsx"/>
+ <tileset firstgid="60" name="decor-forest" tilewidth="48" tileheight="48">
+  <image source="../../tilesets/decor-forest.png" width="192" height="192"/>
+ </tileset>
  <layer name="ground" width="64" height="24">
   <data encoding="base64" compression="zlib">
-   eJztVotuwjAMzEYZ0MIgIG2M///QxWpPck9OSSrSFqmRTn3Fj7Mdu87Nuz5mxtxrCh9X/iv/lf978i9tb+71Lvw/A6qAbWF/lsJf+G5cy1mu3wE+4Jjg85Lnc6r+S0DjWs7XgDrgK+AxksfS+KOerSXfkG+JgfC+uz73kmsK/pLfa2QPvvkOtwn8snwsyf/g2txa6zfgT+FBsnvaj1pCr6joObdnluav6zunp+8Nv6Cr7uDVvUBifHJ58SjN/0A+3gYl+rLngB/1TnQJZ+kRUiv3DnK/Izup9lLn05h5rPnjjOfMNKkBzV/OCnojL5wjxKHprscEH2P8MZdRc890Wbo5/1KfW5ceg3OmTcQIccB5iOUuZhdnDfMY/HNnKvp74/o1+eq5zDIc9xzfuc+M9Rt6GuKfG0ecvw1B9zjECVf8U6FPptYdcxcdyN+Q3/ofVv/HxnpSKt/K0IOaRFw1NyzOf2rcL65f8zxbOIbcI7zaXxu6eEZxXi2+jbPjaPUVzZ/lTkaONJ9YvQ75Dl/5jDeGHjzz3LZymwPY1r5xDVtykEHsmQvL4R1zHULKPitWY3UPcbXi7pVMrv3cHOnrK2z5yH3s/MZkn+WE9bGtFC7yz/YP7DwVgw==
+   eJztVotugkAQvCq2CrYWTVrr/39obwOTLJM92CPyMOGSiai3j9knISx73hbG0mcOHzf+G/+N/2vyn9re0udV+O8iiojDxP6shb/w3YeGs3x+RdQRZ4fPa97PXv3fEVVoOF8jyoj3iMdIHmvjj3q2jvyHfEsMhPc9dLlPeebgL/m9Ju7gv7rFbQa/LB+n5H8KTW6t8xvxp/Ag2SPdRy1hVhT0PXdmTs1f13fOTD8afkFX2aJWzwKJ8WfIi8fU/E/k461Xoit7ifhRv4ku4SwzQmrl3kKeP8gOeurssOPZT2P2seav/fHOY6kBzV96BbORD/pI4qDjY91lH1P8sZdRc0OxtHRz/qU+D8Efg0umTYnDEGf20QJ6DfsY/HN3KuZ7Fbo98Oy97JXx2OM5M9Zv6KmIf24c0X97gp5x4Mzcd+q+p+6Yu/iN/PX5rd9h9Xssx9ATR823MPSgJhFX3VPMXct6eg/1yj6zHeYNO7W6Xxq6eEdxXi2+VbDjaM2VFHd9j/fjUL32+Q4b3OOVoQffeW9buc0BbGvfuIYtOcgg9syF5fAbc+2D554Vq7G6+7haca+VTK793Bzpz2fYqhPPqf5NyQ7lhPWxLQ8XeSf5B7ACFRg=
   </data>
  </layer>
  <layer name="dangerous" width="64" height="24">
   <data encoding="base64" compression="zlib">
-   eJzt1iEOACAMA8B9BPj/L5mZnEAQEHdJfVXTCADojczMrNdFAD5UG2knAQDO1Y8C7tkarwEP
+   eJzt1iEOACAMA8B9C/j/v5iZnEAQEHdJfVXTCADojczMrNdFAD5UG2knAQDO1Y8C7tk/YwIL
   </data>
  </layer>
  <objectgroup name="controls" width="64" height="24">
   <object name="level-start" type="Début de niveau" x="192" y="864" width="48" height="48"/>
   <object name="level-end" type="Fin de niveau" x="2736" y="576" width="240" height="288"/>
  </objectgroup>
+ <layer name="decor" width="64" height="24">
+  <data encoding="base64" compression="zlib">
+   eJzt11sKgCAQBdBZmMWEtY/2v4r6sIgSRZ3xQfdA+JH5ukSTIdoJAAAAbpNrt6arAICRmdYLULQE7vF5Wdf+0bV3qzhH6PxbYxon/yneJVmN/HvGJJe/Rj65Ut45pm/+tb8Hs8AYzzVz4rOx/qXZvuvzknrdd1ZS9f8qNI5Pz/8omvsGgHwH5HIKPQ==
+  </data>
+ </layer>
+ <layer name="herbe" width="64" height="24">
+  <data encoding="base64" compression="zlib">
+   eJztlkEOwCAIBH1bD/b/P6oXEkOEECQWdSfhVNvsii4tBQAAAJCprZ5W799CFkF+qcBZUH+lZwBY4VnBK1tm9ud7Vp/1rmTejx25bR4TWm7PsMM+3jyXorxHfseb+dW4rl8fpdGL53945G3kZfbu8fe9GaH1M0Kb1kfp7HjmazY8urJ6AeAkPqukFsI=
+  </data>
+ </layer>
 </map>

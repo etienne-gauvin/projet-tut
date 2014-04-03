@@ -6,7 +6,7 @@
   <property name="background-1-vspeed" value="-1.1"/>
  </properties>
  <tileset firstgid="1" name="forest" tilewidth="48" tileheight="48">
-  <image source="../../tilesets/forest.png" width="336" height="192"/>
+  <image source="../../tilesets/forest.png" width="336" height="384"/>
   <terraintypes>
    <terrain name="grassy-ground" tile="-1"/>
   </terraintypes>
@@ -31,10 +31,13 @@
   <tile id="24" terrain="0,0,,"/>
   <tile id="25" terrain="0,,,"/>
  </tileset>
- <tileset firstgid="29" source="../../tilesets/dangerous.tsx"/>
+ <tileset firstgid="57" source="../../tilesets/dangerous.tsx"/>
+ <tileset firstgid="60" name="decor-forest" tilewidth="48" tileheight="48">
+  <image source="../../tilesets/decor-forest.png" width="192" height="192"/>
+ </tileset>
  <layer name="ground" width="48" height="16">
   <data encoding="base64" compression="zlib">
-   eJztk9EKgCAMRQ19iPYQ9dD/f2oKBmNsbYRTCC9c0Il3x0UhfNfSwV7qwe7J76nJP1Ze/KtTLpUXf8nbs6/GuS30h/9/8o/V5O+viJyQpXpCtUjW3D0ul/awnEk1qD6yt2q8Lj7JXqs/ZyCc0X5a/lsfydy7LFkcs/UdeH6g3OWYINgYuW/E1bUZUzYpk84UUN4NjOsHgg==
+   eJztk+EKwyAMhN3qYNO5sf7o+z/qEjAsHNpaMR2MBQ5LTM/PpHWuP04HyCqOYLfkt4w//3fDiv9q5Ithxc9+T9Iy2HdE/ML/v5f/TPKkiXSxRWuKvfw3Usi626I1RSs/9517/iBF0ouUXN8MZIYj5ofswulBzM3Mc15ZPIOk6rd4dA9m13//SUkzau+gVmaN+VlWyUudzMNXfKUHAbwT1JXexVx0n28AWdAfVcvLXqzs4Xlb/mvn1FS6V4tXibn1Hrp/pRmv9UrXtty3dC7mt3qMbDVP7GlUfm+/UAmb
   </data>
  </layer>
  <layer name="dangerous" width="48" height="16">
@@ -49,4 +52,14 @@
  <objectgroup name="Objet non terminé" width="48" height="16">
   <object name="Facade Maison" x="13" y="299" width="136" height="277"/>
  </objectgroup>
+ <layer name="decor" width="48" height="16">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUjIJRMFDAdqAdQGXgONAOoBA4kKjelRaOQALI6YMYu5wpsIvSuLOjUD8yQHaLDQNxbnOA0i5EqKWmW0fBKBiKAACVRQPI
+  </data>
+ </layer>
+ <layer name="herbe" width="48" height="16">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUjIJRQG/gBsROUOw+wG4ZSQAW7uiAnDiAmUWL+ENOH8gYHyA2PWELA3L8gM19xLiTVmbj00MLN46CUTCUAQCD3gyO
+  </data>
+ </layer>
 </map>

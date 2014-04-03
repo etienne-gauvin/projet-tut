@@ -6,7 +6,7 @@
   <property name="background-1-vspeed" value="-1.1"/>
  </properties>
  <tileset firstgid="1" name="forest" tilewidth="48" tileheight="48">
-  <image source="../../tilesets/forest.png" width="336" height="192"/>
+  <image source="../../tilesets/forest.png" width="336" height="384"/>
   <terraintypes>
    <terrain name="grassy-ground" tile="-1"/>
   </terraintypes>
@@ -31,7 +31,10 @@
   <tile id="24" terrain="0,0,,"/>
   <tile id="25" terrain="0,,,"/>
  </tileset>
- <tileset firstgid="29" source="../../tilesets/dangerous.tsx"/>
+ <tileset firstgid="57" source="../../tilesets/dangerous.tsx"/>
+ <tileset firstgid="60" name="decor-forest" tilewidth="48" tileheight="48">
+  <image source="../../tilesets/decor-forest.png" width="192" height="192"/>
+ </tileset>
  <layer name="ground" width="48" height="16">
   <data encoding="base64" compression="zlib">
    eJztU10PwiAMRJmJgs6sD/7/nyokJbncCs49SDC75ALr6PXKh3P9cWpwBIzunzG6/wM2rm7sc82+n4mv3kYM/MP7P/z3xa+8nxOnRK9j4WVH7qc1nuYc+7Z+xi1xSQw6Rp3fN3ifIS8YniZdI6ArVEsgFjWe+aj0jD161V8ot+Rb+1K+Z7f2EkEnwD/0WBhhRKIm6gbQEagjVFdIi+NCdXD/a7T6Cm7dk5W3JRYq+nynarmWJ74vLdb653Ns9c3etu4pnsUbRhYJuQ==
@@ -39,7 +42,7 @@
  </layer>
  <layer name="dangerous" width="48" height="16">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFo2AUjIJRMApGwSggH8gCsRwNzJOns95RMApGCgAAMIkA8A==
+   eJxjYBgFo2AUjIJRMApGwSggH1gCsRUNzLOms95RMApGCgAAIvYB0A==
   </data>
  </layer>
  <objectgroup name="controls" width="48" height="16">
@@ -53,4 +56,14 @@
  <objectgroup name="ennemis" width="48" height="16">
   <object name="rat" x="579" y="455" width="70" height="70"/>
  </objectgroup>
+ <layer name="decor" width="48" height="16">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUjIJRMAoQwHGA7LWlkjkOUJpW/gC50waPvcQAOzxyzgwQt8PMQ7fLlYF6YYVuLzZgy4A9LPH5gRwAssMFj7wrAf0ODNjdictfo2AUjGQAAGxXBgY=
+  </data>
+ </layer>
+ <layer name="herbe" width="48" height="16">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUjIJRMApGATHADYidsGB3MvSSYj4hTIz9lAA3LGLY3EEJIMaf5OofBaNgFKACALeXDHs=
+  </data>
+ </layer>
 </map>
