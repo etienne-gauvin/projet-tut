@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="64" height="24" tilewidth="48" tileheight="48" backgroundcolor="#aae6e7">
+ <properties>
+  <property name="background-1-hspeed" value="-1.2"/>
+  <property name="background-1-image" value="trees-2"/>
+  <property name="background-1-vspeed" value="-1.1"/>
+ </properties>
+ <tileset firstgid="1" name="forest" tilewidth="48" tileheight="48">
+  <image source="../../tilesets/forest.png" width="336" height="192"/>
+  <terraintypes>
+   <terrain name="grassy-ground" tile="-1"/>
+  </terraintypes>
+  <tile id="1" terrain=",,,0"/>
+  <tile id="2" terrain=",,0,0"/>
+  <tile id="3" terrain=",,0,0"/>
+  <tile id="4" terrain=",,0,"/>
+  <tile id="5" terrain="0,0,0,"/>
+  <tile id="6" terrain="0,0,,0"/>
+  <tile id="8" terrain=",0,,0"/>
+  <tile id="9" terrain="0,0,0,0"/>
+  <tile id="10" terrain="0,0,0,0"/>
+  <tile id="11" terrain="0,,0,"/>
+  <tile id="12" terrain="0,,0,0"/>
+  <tile id="13" terrain=",0,0,0"/>
+  <tile id="15" terrain=",0,,0"/>
+  <tile id="16" terrain="0,0,0,0"/>
+  <tile id="17" terrain="0,0,0,0"/>
+  <tile id="18" terrain="0,,0,"/>
+  <tile id="22" terrain=",0,,"/>
+  <tile id="23" terrain="0,0,,"/>
+  <tile id="24" terrain="0,0,,"/>
+  <tile id="25" terrain="0,,,"/>
+ </tileset>
+ <tileset firstgid="29" source="../../tilesets/dangerous.tsx"/>
+ <layer name="ground" width="64" height="24">
+  <data encoding="base64" compression="zlib">
+   eJztVtFuwjAMNCsbohlohYeNPez/P3Ox6KnXm0MDD2sZs2QV3MT12WcnZv9yD/KUdZ31ee5AZpK3rF3W17kDmUm2WQ/2uPi9/o7/OHcgM8mj43f+t/a4/Hf80fz7C+fCitTxNHbGs6I14P/OxlhxLqj9noTxOx7n+dHG+FF/7YH3rBsbctDYkL+lS8Rdx5nsjFHxuz2aAZ6DU9aPXj0f98AHcJdnOuacznlfC/xT2MCJJeWA+xrCXIeA54ofmDwHNefg0nLAvGZbCb/G/WXDHbCGA+zrt8/MqNaInbGC02o7WDzrgYf7YE2q+dhafa5WorVS4rXiiu7vpf7v+rXqwzmNGXeyYebh96fEdmlmRnINbkiphhGvo3WlngDPb73vel32vf8X+5mbSKbw19a6VH/txehOj9yh/rf2LvJYi92lhB+49xbHq7Zohpfwa43RE+jza+vPsUbnyC0C7qIvFUPE4Qir2qI8wV/U/zWCeqReMSNxL+R52YiuC0/UHfdPnrt4t6M9yD3fR3ldaS/XLQU+IlVs6HmOF/7YnsSOtViPM6glTfSEn072tOSzJT8HG3MoFf5H6/ipMbKd4+b3eMcYFbNqlBeey/o/yTPKW2SPYugm/PE6xqU51+9rTkoYFGPp21P2LvjGpbxcqgfXBDX32Y47wIa+o7VmPnBufP83vCMZzQ==
+  </data>
+ </layer>
+ <layer name="dangerous" width="64" height="24">
+  <data encoding="base64" compression="zlib">
+   eJzt1DEKwDAIBVDnHiLe/5bdk+jQpSS8B4J8B52MAAAA4AT59wEAlxpNPs9yk41Yf3SVdbuqe7Logbs9U33xAnNrAg8=
+  </data>
+ </layer>
+ <objectgroup name="controls" width="64" height="24">
+  <object name="level-start" type="Début de niveau" x="3" y="822" width="48" height="48"/>
+  <object name="level-end" x="3019" y="587" width="49" height="318"/>
+ </objectgroup>
+ <objectgroup name="objet non terminé" width="64" height="24"/>
+ <objectgroup name="objects" width="64" height="24"/>
+ <objectgroup name="ennemis" width="64" height="24">
+  <object name="rat" x="1569" y="417" width="60" height="61"/>
+  <object name="rat" x="1075" y="608" width="70" height="63"/>
+  <object name="rat" x="2193" y="893" width="79" height="65"/>
+ </objectgroup>
+</map>

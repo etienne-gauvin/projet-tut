@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="48" height="16" tilewidth="48" tileheight="48" backgroundcolor="#aae6e7">
+ <properties>
+  <property name="background-1-hspeed" value="-1.2"/>
+  <property name="background-1-image" value="trees-2"/>
+  <property name="background-1-vspeed" value="-1.1"/>
+ </properties>
+ <tileset firstgid="1" name="forest" tilewidth="48" tileheight="48">
+  <image source="../../tilesets/forest.png" width="336" height="192"/>
+  <terraintypes>
+   <terrain name="grassy-ground" tile="-1"/>
+  </terraintypes>
+  <tile id="1" terrain=",,,0"/>
+  <tile id="2" terrain=",,0,0"/>
+  <tile id="3" terrain=",,0,0"/>
+  <tile id="4" terrain=",,0,"/>
+  <tile id="5" terrain="0,0,0,"/>
+  <tile id="6" terrain="0,0,,0"/>
+  <tile id="8" terrain=",0,,0"/>
+  <tile id="9" terrain="0,0,0,0"/>
+  <tile id="10" terrain="0,0,0,0"/>
+  <tile id="11" terrain="0,,0,"/>
+  <tile id="12" terrain="0,,0,0"/>
+  <tile id="13" terrain=",0,0,0"/>
+  <tile id="15" terrain=",0,,0"/>
+  <tile id="16" terrain="0,0,0,0"/>
+  <tile id="17" terrain="0,0,0,0"/>
+  <tile id="18" terrain="0,,0,"/>
+  <tile id="22" terrain=",0,,"/>
+  <tile id="23" terrain="0,0,,"/>
+  <tile id="24" terrain="0,0,,"/>
+  <tile id="25" terrain="0,,,"/>
+ </tileset>
+ <tileset firstgid="29" source="../../tilesets/dangerous.tsx"/>
+ <layer name="ground" width="48" height="16">
+  <data encoding="base64" compression="zlib">
+   eJztk9EKgCAMRQ19iPYQ9dD/f2oKBmNsbYRTCC9c0Il3x0UhfNfSwV7qwe7J76nJP1Ze/KtTLpUXf8nbs6/GuS30h/9/8o/V5O+viJyQpXpCtUjW3D0ul/awnEk1qD6yt2q8Lj7JXqs/ZyCc0X5a/lsfydy7LFkcs/UdeH6g3OWYINgYuW/E1bUZUzYpk84UUN4NjOsHgg==
+  </data>
+ </layer>
+ <layer name="dangerous" width="48" height="16">
+  <data encoding="base64" compression="zlib">
+   eJztwQEBAAAAgiD/r25IQAEAAC8GDAAAAQ==
+  </data>
+ </layer>
+ <objectgroup name="controls" width="48" height="16">
+  <object name="level-start" type="Début de niveau" x="192" y="480" width="48" height="48"/>
+  <object name="level-end" x="2245" y="326" width="50" height="234"/>
+ </objectgroup>
+ <objectgroup name="Objet non terminé" width="48" height="16">
+  <object name="Facade Maison" x="13" y="299" width="136" height="277"/>
+ </objectgroup>
+</map>

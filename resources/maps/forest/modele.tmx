@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="48" height="16" tilewidth="48" tileheight="48" backgroundcolor="#aae6e7">
+ <properties>
+  <property name="background-1-hspeed" value="-1.2"/>
+  <property name="background-1-image" value="trees-2"/>
+  <property name="background-1-vspeed" value="-1.1"/>
+ </properties>
+ <tileset firstgid="1" name="forest" tilewidth="48" tileheight="48">
+  <image source="../../tilesets/forest.png" width="336" height="192"/>
+  <terraintypes>
+   <terrain name="grassy-ground" tile="-1"/>
+  </terraintypes>
+  <tile id="1" terrain=",,,0"/>
+  <tile id="2" terrain=",,0,0"/>
+  <tile id="3" terrain=",,0,0"/>
+  <tile id="4" terrain=",,0,"/>
+  <tile id="5" terrain="0,0,0,"/>
+  <tile id="6" terrain="0,0,,0"/>
+  <tile id="8" terrain=",0,,0"/>
+  <tile id="9" terrain="0,0,0,0"/>
+  <tile id="10" terrain="0,0,0,0"/>
+  <tile id="11" terrain="0,,0,"/>
+  <tile id="12" terrain="0,,0,0"/>
+  <tile id="13" terrain=",0,0,0"/>
+  <tile id="15" terrain=",0,,0"/>
+  <tile id="16" terrain="0,0,0,0"/>
+  <tile id="17" terrain="0,0,0,0"/>
+  <tile id="18" terrain="0,,0,"/>
+  <tile id="22" terrain=",0,,"/>
+  <tile id="23" terrain="0,0,,"/>
+  <tile id="24" terrain="0,0,,"/>
+  <tile id="25" terrain="0,,,"/>
+ </tileset>
+ <tileset firstgid="29" source="../../tilesets/dangerous.tsx"/>
+ <layer name="ground" width="48" height="16">
+  <data encoding="base64" compression="zlib">
+   eJztk0ELwzAIhR3NYZhDqYf+/5+6BlJ4vLnU7VIcefCRIFGflYrcr8eADMrun5Xd/5Svp+Tea/O9Hux3G3H0D/9/Nr+s6X/qWy1ACZwl8G4JvCvU+xdajdrZDrTT7tZRoMKJGORtEFeoY9DHqK9RLY4b9Tl76QBvLpX3mby8SEw/1D+91Ytcz1OVmMfR/LzH0dzsLfpNcRcv6CEHmg==
+  </data>
+ </layer>
+ <layer name="dangerous" width="48" height="16">
+  <data encoding="base64" compression="zlib">
+   eJztwQEBAAAAgiD/r25IQAEAAC8GDAAAAQ==
+  </data>
+ </layer>
+ <objectgroup name="controls" width="48" height="16">
+  <object name="level-start" type="Début de niveau" x="3" y="438" width="48" height="48"/>
+  <object name="level-end" x="2249" y="161" width="49" height="318"/>
+ </objectgroup>
+ <objectgroup name="objet non terminé" width="48" height="16"/>
+ <objectgroup name="objects" width="48" height="16"/>
+ <objectgroup name="ennemis" width="48" height="16"/>
+</map>

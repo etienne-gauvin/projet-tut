@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="48" height="16" tilewidth="48" tileheight="48" backgroundcolor="#aae6e7">
+ <properties>
+  <property name="background-1-hspeed" value="-1.2"/>
+  <property name="background-1-image" value="trees-2"/>
+  <property name="background-1-vspeed" value="-1.1"/>
+ </properties>
+ <tileset firstgid="1" name="forest" tilewidth="48" tileheight="48">
+  <image source="../../tilesets/forest.png" width="336" height="192"/>
+  <terraintypes>
+   <terrain name="grassy-ground" tile="-1"/>
+  </terraintypes>
+  <tile id="1" terrain=",,,0"/>
+  <tile id="2" terrain=",,0,0"/>
+  <tile id="3" terrain=",,0,0"/>
+  <tile id="4" terrain=",,0,"/>
+  <tile id="5" terrain="0,0,0,"/>
+  <tile id="6" terrain="0,0,,0"/>
+  <tile id="8" terrain=",0,,0"/>
+  <tile id="9" terrain="0,0,0,0"/>
+  <tile id="10" terrain="0,0,0,0"/>
+  <tile id="11" terrain="0,,0,"/>
+  <tile id="12" terrain="0,,0,0"/>
+  <tile id="13" terrain=",0,0,0"/>
+  <tile id="15" terrain=",0,,0"/>
+  <tile id="16" terrain="0,0,0,0"/>
+  <tile id="17" terrain="0,0,0,0"/>
+  <tile id="18" terrain="0,,0,"/>
+  <tile id="22" terrain=",0,,"/>
+  <tile id="23" terrain="0,0,,"/>
+  <tile id="24" terrain="0,0,,"/>
+  <tile id="25" terrain="0,,,"/>
+ </tileset>
+ <tileset firstgid="29" source="../../tilesets/dangerous.tsx"/>
+ <layer name="ground" width="48" height="16">
+  <data encoding="base64" compression="zlib">
+   eJztU10PwiAMRJmJgs6sD/7/nyokJbncCs49SDC75ALr6PXKh3P9cWpwBIzunzG6/wM2rm7sc82+n4mv3kYM/MP7P/z3xa+8nxOnRK9j4WVH7qc1nuYc+7Z+xi1xSQw6Rp3fN3ifIS8YniZdI6ArVEsgFjWe+aj0jD161V8ot+Rb+1K+Z7f2EkEnwD/0WBhhRKIm6gbQEagjVFdIi+NCdXD/a7T6Cm7dk5W3JRYq+nynarmWJ74vLdb653Ns9c3etu4pnsUbRhYJuQ==
+  </data>
+ </layer>
+ <layer name="dangerous" width="48" height="16">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUjIJRMApGwSggH8gCsRwNzJOns95RMApGCgAAMIkA8A==
+  </data>
+ </layer>
+ <objectgroup name="controls" width="48" height="16">
+  <object name="level-start" type="Début de niveau" x="3" y="438" width="48" height="48"/>
+  <object name="level-end" x="2249" y="161" width="49" height="318"/>
+ </objectgroup>
+ <objectgroup name="objet non terminé" width="48" height="16"/>
+ <objectgroup name="objects" width="48" height="16">
+  <object name="rock" x="1636" y="393" width="88" height="85"/>
+ </objectgroup>
+ <objectgroup name="ennemis" width="48" height="16">
+  <object name="rat" x="579" y="455" width="70" height="70"/>
+ </objectgroup>
+</map>
