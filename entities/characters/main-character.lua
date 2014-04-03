@@ -94,7 +94,7 @@ function MainCharacter:update(dt)
   -- Saut
   if keyboard.isDown('up') then
     if not self.isJumping and self.feet:collidesWithA(Block) then
-      body:applyLinearImpulse(0, -100)
+      body:applyLinearImpulse(0, -140)
     end
   end
   
