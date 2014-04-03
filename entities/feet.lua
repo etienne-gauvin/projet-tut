@@ -17,7 +17,6 @@ end
 -- Lors d'une collision
 function Feet:beginContact(entity, contact, velocity)
   Entity.beginContact(self, entity, contact, velocity)
-  print("COLLISION")
 end
 
 -- À la fin d'une collision

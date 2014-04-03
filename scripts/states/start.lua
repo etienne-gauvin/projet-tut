@@ -7,10 +7,10 @@ local StartState = State:subclass('StartState')
 function StartState:start()
   
   -- Switcher directement sur une map
-  --core.stateHandler:switchTo(game.states.play, game.levels.forest[1])
+  core.stateHandler:switchTo(game.states.play, game.levels.forest[1])
   
   -- Afficher la liste des maps
-  core.stateHandler:switchTo(game.states.levelSelection)
+  --core.stateHandler:switchTo(game.states.levelSelection)
 end
 
 return StartState

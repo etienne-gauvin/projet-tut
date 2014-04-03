@@ -132,6 +132,14 @@ function Level:update(dt)
   
   -- Mise à jour de tous les personnages et objets
   self.layer:sub('objects'):update(dt)
+  
+  -- Fin de niveau
+  local mc = self.mainCharacter
+  local le = self.levelEndArea
+  
+  if mc.pos.x > le.x then
+    self:levelEnd()
+  end
 end
 
 -- Affichage
@@ -185,8 +193,14 @@ end
 -- Lorsque le joueur entre dans la zone de fin de niveau
 function Level:levelEnd()
   
-  -- Avertir la PlayState de la fin du niveau
-  core.states.play:levelEnd()
+  -- Changement de niveau
+  if self.nextLevel then
+    core.stateHandler:switchTo(game.states.play, self.nextLevel)
+    
+  -- Retour au menu si aucun niveau suivant n'a été défini
+  else
+    core.stateHandler:switchTo(game.states.levelSelection)
+  end
 end
 
 -- Retourne les paramètres utiles de la collision entre objets

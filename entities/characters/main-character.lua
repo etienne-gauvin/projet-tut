@@ -75,7 +75,7 @@ function MainCharacter:update(dt)
     end
     
     self.isMoving = true
-    
+  
   -- Ralentissement
   else
     velx = velx / 1.5
@@ -106,8 +106,6 @@ function MainCharacter:update(dt)
   else
     self.anim = 'stand'
   end
-  
-  core.debug("char dir", self.direction)
 end
 
 -- Affichage
